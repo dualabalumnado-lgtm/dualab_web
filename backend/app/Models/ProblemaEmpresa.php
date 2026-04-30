@@ -2,11 +2,12 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class ProblemaEmpresa extends Model
 {
- use HasFactory;
+    use HasFactory;
 
     // Esta es nuestra "Lista VIP" por seguridad
     protected $fillable = [

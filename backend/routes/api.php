@@ -29,6 +29,6 @@ Route::prefix('leads/{lead}')->group(function () {
     Route::post('alumno', [AlumnoInteresadoController::class, 'store']);
     Route::patch('alumno', [AlumnoInteresadoController::class, 'update']);
     Route::delete('alumno', [AlumnoInteresadoController::class, 'destroy']);
-
-    Route::post('/formulario-empresas', [ProblemaEmpresaController::class, 'store']);
 });
+
+ Route::post('/formulario-empresas', [ProblemaEmpresaController::class, 'store']);

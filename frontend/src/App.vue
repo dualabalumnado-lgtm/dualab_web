@@ -1,11 +1,16 @@
-<script setup></script>
-
 <template>
-  <h1>You did it!</h1>
-  <p>
-    Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
-    documentation
-  </p>
+  <div class="min-h-screen bg-gray-100 py-10">
+    
+    <FormularioChatbot />
+
+  </div>
 </template>
 
-<style scoped></style>
+<script setup>
+// Aquí le decimos a App.vue DÓNDE encontrar a tu actor (importamos el archivo)
+import FormularioChatbot from './components/FormularioChatbot.vue'
+</script>
+
+<style>
+/* Podemos dejar esto vacío, Tailwind se encarga de todo el diseño */
+</style>
