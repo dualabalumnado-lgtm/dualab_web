@@ -6,21 +6,23 @@ defineProps({
 
 <template>
   <div
-    class="group bg-white rounded-2xl p-5 border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer"
+    class="group relative overflow-hidden rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer aspect-[4/3]"
   >
-    <!-- Icono -->
-    <div
-      class="w-14 h-14 flex items-center justify-center rounded-xl mb-4 text-white text-xl bg-brand-primary group-hover:scale-110 transition"
-    >
-      {{ familia.icono }}
+    <!-- Imagen -->
+    <img
+      :src="familia.imagen"
+      :alt="familia.nombre"
+      class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
+    />
+
+    <!-- Degradado inferior -->
+    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+
+    <!-- Nombre -->
+    <div class="absolute bottom-0 left-0 right-0 p-4">
+      <h3 class="text-white text-sm font-semibold leading-tight drop-shadow">
+        {{ familia.nombre }}
+      </h3>
     </div>
-
-    <!-- Texto -->
-    <h3 class="text-sm font-semibold text-gray-800 leading-tight">
-      {{ familia.nombre }}
-    </h3>
-
-    <!-- Línea decorativa -->
-    <div class="mt-3 h-1 w-0 bg-brand-light group-hover:w-10 transition-all duration-300 rounded-full"></div>
   </div>
 </template>
