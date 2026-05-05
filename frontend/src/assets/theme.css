@@ -1,0 +1,12 @@
+:root {
+  --color-primary:   #59BF38;
+  --color-secondary: #1F6935;
+  --color-accent:    #AEE565;
+  --color-neutral:   #C6D8C6;
+
+  /* Variantes con opacidad */
+  --color-primary-hover:   #4aad2f;
+  --color-secondary-hover: #174f28;
+  --color-accent-light:    #d4f0a0;
+  --color-neutral-light:   #e8f0e8;
+}
