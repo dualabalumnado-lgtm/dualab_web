@@ -4,9 +4,20 @@
   --color-accent:    #AEE565;
   --color-neutral:   #C6D8C6;
 
-  /* Variantes con opacidad */
   --color-primary-hover:   #4aad2f;
   --color-secondary-hover: #174f28;
   --color-accent-light:    #d4f0a0;
   --color-neutral-light:   #e8f0e8;
+}
+
+.dark {
+  --color-primary:   #6dd147;
+  --color-secondary: #AEE565;
+  --color-accent:    #59BF38;
+  --color-neutral:   #2a3a2a;
+
+  --color-primary-hover:   #5bc93a;
+  --color-secondary-hover: #c8f07a;
+  --color-accent-light:    #1a3a1a;
+  --color-neutral-light:   #1a2e1a;
 }

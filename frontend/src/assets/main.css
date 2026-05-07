@@ -1,8 +1,59 @@
-@tailwind base;
-@tailwind components;
+@import "./theme.css";
+
 @tailwind utilities;
 
-@import "./theme.css";
+/* -----------------------------------------------
+   Microinteracciones de botones
+----------------------------------------------- */
+.btn {
+  transition: transform 0.12s ease, box-shadow 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+  cursor: pointer;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn-green {
+  box-shadow: 0 0 0 rgba(89, 191, 56, 0);
+}
+
+.btn-green:hover {
+  box-shadow: 0 0 14px rgba(89, 191, 56, 0.45);
+}
+
+.btn-ghost {
+  box-shadow: 0 0 0 rgba(255, 255, 255, 0);
+}
+
+.btn-ghost:hover {
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.18);
+}
+
+
+.glass {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+.dark .glass {
+  background: rgba(30, 32, 36, 0.80);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.glass-dark {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  background: rgba(15, 23, 42, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+}
+
+.dark .glass-dark {
+  background: rgba(0, 0, 0, 0.55);
+  border-color: rgba(255, 255, 255, 0.06);
+}
 
 .bg-brand-gradient {
   background: linear-gradient(
@@ -12,4 +63,62 @@
     #AEE565 70%,
     #C6D8C6 100%
   );
+}
+
+/* -----------------------------------------------
+   Tema Global
+----------------------------------------------- */
+body {
+  background-color: #F8FAFC !important;
+  color: #4B5563 !important;
+}
+
+h1, h2 {
+  color: #121212;
+}
+
+h3, h4 {
+  color: #1F2937;
+}
+
+.gradient-text {
+  color: transparent !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+}
+
+/* -----------------------------------------------
+   Inputs
+----------------------------------------------- */
+input, select, textarea {
+  background-color: #1F2937 !important;
+  color: #FFFFFF !important;
+  border: 2px solid transparent !important;
+}
+
+input::placeholder, textarea::placeholder {
+  color: #6B7280 !important;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: #00A859 !important;
+  outline: none !important;
+  box-shadow: 0 0 0 4px rgba(0, 168, 89, 0.2) !important;
+}
+
+/* -----------------------------------------------
+   Scrollbar
+----------------------------------------------- */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #F8FAFC;
+}
+::-webkit-scrollbar-thumb {
+  background: #E2E8F0;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #00A859;
 }
