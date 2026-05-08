@@ -1,4 +1,5 @@
 <script setup>
+import logo from '@/assets/Dualab_logo_sin_fondo_2.png'
 const emit = defineEmits(['login', 'formulario'])
 </script>
 
@@ -9,36 +10,39 @@ const emit = defineEmits(['login', 'formulario'])
       <!-- NAV -->
       <nav class="nav">
         <div class="nav-logo">
-          <div class="logo-mark"></div>
-          Dualab
+        <img :src="logo" alt="Dualab logo" class="logo-img" />
+        
         </div>
+      <div class="nav-actions">
+        <span class="nav-hint">¿Ya tienes cuenta?</span>
         <button class="nav-btn" @click="emit('login')">Iniciar sesión</button>
+      </div>
       </nav>
 
       <!-- HERO -->
       <h1 class="title">
-        Conecta con empresas resolviendo retos reales
+        Conectamos talento con oportunidades reales
       </h1>
 
       <p class="subtitle">
-        Dualab conecta estudiantes, centros educativos y empresas en un mismo lugar
+        Gana experiencia real. Encuentra talento joven. Conecta tu alumnado con empresas.
       </p>
 
       <!-- CÓMO FUNCIONA INLINE -->
       <div class="how-inline">
         <div class="how-step">
           <span class="how-num">1</span>
-          <span>La empresa crea un reto</span>
+          <span>Empresas proponen</span>
         </div>
         <span class="how-sep">→</span>
         <div class="how-step">
           <span class="how-num">2</span>
-          <span>El estudiante lo resuelve</span>
+          <span>Estudiantes resuelven</span>
         </div>
         <span class="how-sep">→</span>
         <div class="how-step">
           <span class="how-num">3</span>
-          <span>La empresa descubre talento</span>
+          <span>Todos conectan</span>
         </div>
       </div>
 
@@ -72,7 +76,7 @@ const emit = defineEmits(['login', 'formulario'])
       </div>
 
       <!-- CÓMO FUNCIONA DETALLADO -->
-      <div class="how">
+      <!-- /*<div class="how">
 
         <h2 class="how-title">¿Cómo funciona?</h2>
         <p class="how-sub">Un proceso simple para conectar talento con oportunidades</p>
@@ -98,7 +102,7 @@ const emit = defineEmits(['login', 'formulario'])
           </div>
 
         </div>
-      </div>
+      </div>*/ -->
 
     </div>
   </div>
@@ -106,12 +110,19 @@ const emit = defineEmits(['login', 'formulario'])
 
 <style scoped>
 
+.logo-img {
+  height: 70px;
+  width: auto;
+  filter: drop-shadow(0 4px 10px rgba(0,0,0,0.08));
+  opacity: 0.92;
+}
+
 /* ─── LAYOUT BASE ────────────────────────────────────── */
 .container {
   min-height: 100vh;
-  padding: 32px 40px 60px;
+  padding: 20px 40px 60px;
   font-family: sans-serif;
-  background: linear-gradient(180deg, #f5faf5 0%, #eaf4ea 100%);
+  background: radial-gradient(circle at top, #f7fcf6 0%, #eef6ed 50%, #e6efe5 100%);
 }
 
 .content {
@@ -125,7 +136,7 @@ const emit = defineEmits(['login', 'formulario'])
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 64px;
+  margin-bottom: 50px;
   text-align: left;
 }
 
@@ -146,36 +157,62 @@ const emit = defineEmits(['login', 'formulario'])
 }
 
 .nav-btn {
-  background: #1F6935;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  padding: 8px 20px;
+  background: rgba(255, 255, 255, 0.55);
+  color: #1F6935;
+
+  border: 1px solid rgba(31, 105, 53, 0.15);
+  border-radius: 10px;
+
+  padding: 10px 20px;
+
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 600;
+
   cursor: pointer;
-  transition: opacity 0.15s ease;
+
+  backdrop-filter: blur(8px);
+
+  transition: all 0.2s ease;
 }
 
 .nav-btn:hover {
-  opacity: 0.88;
+  background: white;
+  transform: translateY(-2px);
+
+  box-shadow: 0 10px 24px rgba(31, 105, 53, 0.08);
+}
+
+.nav-btn:active {
+  transform: scale(0.97);
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav-hint {
+  font-size: 13px;
+  color: #75947F;
 }
 
 /* ─── HERO ───────────────────────────────────────────── */
 .title {
-  font-size: clamp(28px, 5vw, 46px);
-  font-weight: 600;
-  color: #1F6935;
-  line-height: 1.2;
-  margin-bottom: 16px;
+  font-size: clamp(32px, 4vw, 52px);
+  font-weight: 700;
+  max-width: 950px;
+  margin: 0 auto 24px;
+  line-height: 1.1;
+  color: #204b2d;
 }
 
 .subtitle {
-  font-size: 17px;
-  color: #75947F;
-  max-width: 500px;
-  margin: 0 auto 32px;
-  line-height: 1.65;
+  font-size: 20px;
+  color: #6f8776;
+  max-width: 720px;
+  margin: 0 auto 20px;
+  line-height: 1.6;
 }
 
 /* ─── CÓMO FUNCIONA INLINE ───────────────────────────── */
@@ -185,7 +222,7 @@ const emit = defineEmits(['login', 'formulario'])
   justify-content: center;
   gap: 12px;
   flex-wrap: wrap;
-  margin-bottom: 48px;
+  margin-bottom: 32px;
 }
 
 .how-step {
@@ -220,8 +257,8 @@ const emit = defineEmits(['login', 'formulario'])
 .cards {
   display: flex;
   justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
+  gap: 24px;
+  margin-top: 0px;
 }
 
 .card {
@@ -234,12 +271,12 @@ const emit = defineEmits(['login', 'formulario'])
   text-align: left;
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  min-height: unset;
 }
 
 .card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 28px rgba(31, 105, 53, 0.12);
-  border-color: #C6D8C6;
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 18px 40px rgba(31, 105, 53, 0.12);
 }
 
 .card-student { border-top-color: #59BF38; --accent: #59BF38; }
