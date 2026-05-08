@@ -1,13 +1,17 @@
 <script setup>
-import { computed } from "vue"
+import { ref, computed, onMounted } from "vue"
 import { useRoute, useRouter } from "vue-router"
 import { Sprout, Zap, Flame, Target, BookOpen, ArrowLeft } from "lucide-vue-next"
-import { microretos } from "../data/mock"
+import { getMicroreto } from "../services/api"
 
 const route  = useRoute()
 const router = useRouter()
 
-const reto = computed(() => microretos.find(r => r.id === Number(route.params.id)))
+const reto = ref(null)
+
+onMounted(async () => {
+  reto.value = await getMicroreto(route.params.id)
+})
 
 const dificultad = computed(() => ({
   "Básico":     { badge: "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-400", icon: Sprout },

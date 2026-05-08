@@ -1,31 +1,36 @@
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import FamiliaCard from "../components/FamiliaCard.vue"
-import { familias } from "../data/mock"
+import { getFamilias } from "../services/api"
 import { useRouter } from "vue-router"
 
 const router = useRouter()
 const go = (id) => router.push(`/familia/${id}`)
 
-const busqueda    = ref('')
+const familias     = ref([])
+const busqueda     = ref('')
 const filtroActivo = ref('Todas')
 
+onMounted(async () => {
+  familias.value = await getFamilias()
+})
+
 const sectores = {
-  'Tecnología':   [8, 9, 10, 15, 16, 17, 20],
-  'Arte y Diseño': [4, 5, 12, 13, 24, 26],
-  'Salud':         [1, 21],
-  'Servicios':     [2, 6, 11, 22, 23, 25],
-  'Naturaleza':    [3, 7, 18, 19],
+  'Tecnología':    ['Electricidad y Electrónica', 'Energía y Agua', 'Fabricación Mecánica', 'Industrias Extractivas', 'Informática y Comunicaciones', 'Instalación y Mantenimiento', 'Química'],
+  'Arte y Diseño': ['Artes Gráficas', 'Artes y Artesanías', 'Imagen Personal', 'Imagen y Sonido', 'Textil, Confección y Piel', 'Vidrio y Cerámica'],
+  'Salud':         ['Actividades Físicas y Deportivas', 'Sanidad'],
+  'Servicios':     ['Administración y Gestión', 'Comercio y Marketing', 'Hostelería y Turismo', 'Seguridad y Medioambiente', 'Servicios Socioculturales', 'Transporte y Mantenimiento de Vehículos'],
+  'Naturaleza':    ['Agraria', 'Edificación y Obra Civil', 'Madera, Mueble y Corcho', 'Marítimo Pesquera'],
 }
 
 const filtros = ['Todas', ...Object.keys(sectores)]
 
 const familiasFiltradas = computed(() => {
-  let lista = familias
+  let lista = familias.value
 
   if (filtroActivo.value !== 'Todas') {
-    const ids = sectores[filtroActivo.value]
-    lista = lista.filter(f => ids.includes(f.id))
+    const nombres = sectores[filtroActivo.value]
+    lista = lista.filter(f => nombres.includes(f.nombre))
   }
 
   if (busqueda.value.trim()) {
@@ -35,7 +40,6 @@ const familiasFiltradas = computed(() => {
 
   return lista
 })
-
 </script>
 
 <template>

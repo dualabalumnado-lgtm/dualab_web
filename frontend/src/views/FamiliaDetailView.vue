@@ -1,16 +1,19 @@
 <script setup>
-import { computed } from "vue"
+import { ref, computed, onMounted } from "vue"
 import { useRoute, useRouter } from "vue-router"
 import { ArrowLeft, BookOpen } from "lucide-vue-next"
-import { microretos, familias } from "../data/mock"
+import { getFamilia } from "../services/api"
 import MicroretoCard from "../components/MicroretoCard.vue"
 
 const route  = useRoute()
 const router = useRouter()
 
-const id     = Number(route.params.id)
-const familia = computed(() => familias.find(f => f.id === id))
-const retos   = computed(() => microretos.filter(r => r.familiaId === id))
+const familia = ref(null)
+const retos   = computed(() => familia.value?.microretos ?? [])
+
+onMounted(async () => {
+  familia.value = await getFamilia(route.params.id)
+})
 </script>
 
 <template>

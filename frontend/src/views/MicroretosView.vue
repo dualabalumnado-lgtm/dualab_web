@@ -1,17 +1,20 @@
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { Search } from 'lucide-vue-next'
 import MicroretoCard from '../components/MicroretoCard.vue'
-import { microretos, familias } from '../data/mock'
+import { getMicroretos } from '../services/api'
 
+const microretos       = ref([])
 const busqueda         = ref('')
 const dificultadActiva = ref('Todas')
 const niveles = ['Todas', 'Básico', 'Intermedio', 'Avanzado']
 
-const familiaMap = Object.fromEntries(familias.map(f => [f.id, f]))
+onMounted(async () => {
+  microretos.value = await getMicroretos()
+})
 
 const retosFiltrados = computed(() => {
-  let lista = microretos
+  let lista = microretos.value
   if (dificultadActiva.value !== 'Todas')
     lista = lista.filter(r => r.dificultad === dificultadActiva.value)
   if (busqueda.value.trim()) {
@@ -145,7 +148,7 @@ const retosFiltrados = computed(() => {
         >
           <MicroretoCard
             :reto="reto"
-            :familia="familiaMap[reto.familiaId]"
+            :familia="reto.familia"
             :featured="i === 0"
           />
         </div>
