@@ -21,29 +21,68 @@ const emit = defineEmits(['login', 'formulario'])
 
       <!-- HERO -->
       <h1 class="title">
-        Conectamos talento con oportunidades reales
+        El puente entre empresa, formación y talento real.
       </h1>
 
       <p class="subtitle">
-        Gana experiencia real. Encuentra talento joven. Conecta tu alumnado con empresas.
+        Las empresas plantean necesidades reales. El alumnado desarrolla soluciones reales antes de incorporarse al entorno profesional.
       </p>
 
-      <!-- CÓMO FUNCIONA INLINE -->
-      <div class="how-inline">
-        <div class="how-step">
-          <span class="how-num">1</span>
-          <span>Empresas proponen</span>
+      <!-- ECOSISTEMA -->
+      <div class="eco-section">
+
+        <div class="eco-wrap">
+          <div class="eco-flow">
+
+            <div class="eco-card">
+              <p class="eco-num">01</p>
+              <div class="eco-icon eco-icon--empresa">🏢</div>
+              <p class="eco-actor">Empresa</p>
+              <h3 class="eco-title">Plantea<br>necesidad</h3>
+              <p class="eco-desc">Un reto real del negocio.</p>
+            </div>
+
+            <div class="eco-conn"><span></span></div>
+
+            <div class="eco-card eco-card--hub">
+              <p class="eco-hub-badge">núcleo</p>
+              <div class="eco-icon eco-icon--dualab">⚡</div>
+              <p class="eco-actor eco-actor--hub">Dualab</p>
+              <h3 class="eco-title eco-title--hub">Diseña el<br>microreto</h3>
+              <p class="eco-desc eco-desc--hub">Traduce la necesidad en reto pedagógico.</p>
+            </div>
+
+            <div class="eco-conn"><span></span></div>
+
+            <div class="eco-card">
+              <p class="eco-num">03</p>
+              <div class="eco-icon eco-icon--centro">🏫</div>
+              <p class="eco-actor">Centro educativo</p>
+              <h3 class="eco-title">Integra<br>en el aula</h3>
+              <p class="eco-desc">Actividad formativa real.</p>
+            </div>
+
+            <div class="eco-conn"><span></span></div>
+
+            <div class="eco-card">
+              <p class="eco-num">04</p>
+              <div class="eco-icon eco-icon--alumnado">🎓</div>
+              <p class="eco-actor">Alumnado</p>
+              <h3 class="eco-title">Desarrolla<br>la solución</h3>
+              <p class="eco-desc">Experiencia profesional real.</p>
+            </div>
+
+          </div>
         </div>
-        <span class="how-sep">→</span>
-        <div class="how-step">
-          <span class="how-num">2</span>
-          <span>Estudiantes resuelven</span>
+
+        <div class="eco-success">
+          <span class="eco-success-spark">✦</span>
+          <div>
+            <p class="eco-success-label">Resultado del ciclo</p>
+            <p class="eco-success-title">Empresa detecta talento</p>
+          </div>
         </div>
-        <span class="how-sep">→</span>
-        <div class="how-step">
-          <span class="how-num">3</span>
-          <span>Todos conectan</span>
-        </div>
+
       </div>
 
       <!-- TARJETAS -->
@@ -215,42 +254,232 @@ const emit = defineEmits(['login', 'formulario'])
   line-height: 1.6;
 }
 
-/* ─── CÓMO FUNCIONA INLINE ───────────────────────────── */
-.how-inline {
+/* ─── ECOSISTEMA ─────────────────────────────────────── */
+.eco-section {
+  margin: 0 auto 52px;
+}
+
+.eco-wrap {
+  background: linear-gradient(160deg, rgba(255,255,255,0.65) 0%, rgba(242,250,242,0.45) 100%);
+  border: 1px solid rgba(255,255,255,0.82);
+  border-radius: 28px;
+  padding: 36px;
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  box-shadow:
+    0 0 0 1px rgba(0,0,0,0.04),
+    0 24px 64px rgba(0,0,0,0.06),
+    inset 0 1px 0 rgba(255,255,255,1);
+  margin-bottom: 14px;
+}
+
+.eco-flow {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
-  flex-wrap: wrap;
-  margin-bottom: 32px;
 }
 
-.how-step {
+/* ── Card base ─────────────────────────────────── */
+.eco-card {
+  background: rgba(255,255,255,0.75);
+  border: 1px solid rgba(0,0,0,0.07);
+  border-radius: 20px;
+  padding: 24px 18px;
+  flex: 1;
+  max-width: 185px;
+  text-align: left;
+  box-shadow:
+    0 1px 2px rgba(0,0,0,0.04),
+    0 4px 12px rgba(0,0,0,0.03),
+    inset 0 1px 0 rgba(255,255,255,0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  transition: transform 0.28s ease-out, box-shadow 0.28s ease-out;
+}
+
+.eco-card:hover {
+  transform: translateY(-6px);
+  box-shadow:
+    0 20px 40px rgba(0,0,0,0.09),
+    0 8px 20px rgba(0,0,0,0.05),
+    inset 0 1px 0 rgba(255,255,255,0.9);
+}
+
+/* ── Hub card — Dualab ─────────────────────────── */
+.eco-card--hub {
+  background: linear-gradient(160deg, #1c5e30 0%, #23523a 100%);
+  border-color: rgba(89,191,56,0.22);
+  box-shadow:
+    0 0 0 1px rgba(89,191,56,0.10),
+    0 8px 32px rgba(31,105,53,0.28),
+    0 0 60px rgba(89,191,56,0.07),
+    inset 0 1px 0 rgba(255,255,255,0.07);
+  transform: scale(1.05);
+  position: relative;
+  z-index: 1;
+}
+
+.eco-card--hub:hover {
+  transform: scale(1.05) translateY(-6px);
+  box-shadow:
+    0 0 0 1px rgba(89,191,56,0.18),
+    0 24px 48px rgba(31,105,53,0.38),
+    0 0 80px rgba(89,191,56,0.10),
+    inset 0 1px 0 rgba(255,255,255,0.10);
+}
+
+/* ── Connector ─────────────────────────────────── */
+.eco-conn {
+  flex-shrink: 0;
+  width: 32px;
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: 13px;
-  color: #75947F;
 }
 
-.how-num {
-  width: 22px;
-  height: 22px;
+.eco-conn span {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right, rgba(89,191,56,0.1), rgba(89,191,56,0.45), rgba(89,191,56,0.1));
+}
+
+.eco-conn span::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 4px;
+  height: 4px;
   border-radius: 50%;
-  background: #f0f9e0;
-  border: 1px solid #d4efaa;
+  background: rgba(89,191,56,0.5);
+  box-shadow: 0 0 6px rgba(89,191,56,0.4);
+}
+
+.eco-conn span::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: -3px;
+  width: 7px;
+  height: 7px;
+  border-right: 1.5px solid rgba(89,191,56,0.5);
+  border-top: 1.5px solid rgba(89,191,56,0.5);
+  transform: rotate(45deg);
+}
+
+/* ── Step number ───────────────────────────────── */
+.eco-num {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: #9ca3af;
+  margin-bottom: 12px;
+}
+
+/* ── Hub badge ─────────────────────────────────── */
+.eco-hub-badge {
+  display: inline-block;
+  background: rgba(89,191,56,0.18);
+  border: 1px solid rgba(89,191,56,0.28);
+  border-radius: 999px;
+  padding: 2px 9px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: rgba(174,229,101,0.85);
+  margin-bottom: 12px;
+}
+
+/* ── Icon wrap ─────────────────────────────────── */
+.eco-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  border: 1px solid;
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 17px;
+  margin-bottom: 12px;
+}
+
+.eco-icon--empresa  { background: rgba(31,105,53,0.08);    border-color: rgba(31,105,53,0.20); }
+.eco-icon--dualab   { background: rgba(89,191,56,0.18);    border-color: rgba(89,191,56,0.30); }
+.eco-icon--centro   { background: rgba(117,148,127,0.10);  border-color: rgba(117,148,127,0.25); }
+.eco-icon--alumnado { background: rgba(174,229,101,0.15);  border-color: rgba(174,229,101,0.35); }
+
+/* ── Actor / Title / Desc ──────────────────────── */
+.eco-actor {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #9ca3af;
+  margin-bottom: 5px;
+}
+.eco-actor--hub { color: rgba(255,255,255,0.48); }
+
+.eco-title {
+  font-size: 14px;
+  font-weight: 800;
+  color: #111827;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+.eco-title--hub { color: #fff; }
+
+.eco-desc {
   font-size: 11px;
-  font-weight: 600;
-  color: #1F6935;
+  color: #9ca3af;
+  line-height: 1.6;
+}
+.eco-desc--hub { color: rgba(255,255,255,0.48); }
+
+/* ── Success card ──────────────────────────────── */
+.eco-success {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: rgba(255,255,255,0.75);
+  border: 1px solid rgba(89,191,56,0.14);
+  border-left: 3px solid #59BF38;
+  border-radius: 16px;
+  padding: 20px 28px;
+  text-align: left;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow:
+    0 1px 2px rgba(0,0,0,0.04),
+    0 0 28px rgba(89,191,56,0.06),
+    inset 0 1px 0 rgba(255,255,255,0.9);
+}
+
+.eco-success-spark {
+  font-size: 22px;
+  color: #59BF38;
+  filter: drop-shadow(0 0 8px rgba(89,191,56,0.5));
   flex-shrink: 0;
 }
 
-.how-sep {
-  color: #C6D8C6;
+.eco-success-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: #9ca3af;
+  margin-bottom: 3px;
+}
+
+.eco-success-title {
   font-size: 16px;
+  font-weight: 800;
+  color: #1F6935;
+  letter-spacing: -0.02em;
 }
 
 /* ─── TARJETAS ───────────────────────────────────────── */

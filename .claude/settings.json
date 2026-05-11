@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git -C /home/lorena/dualab_web branch -a)",
+      "Bash(git -C /home/lorena/dualab_web show feature/familia-profesional:frontend/src/views/MicroretoDetailView.vue)",
+      "Bash(git -C /home/lorena/dualab_web diff main..feature/familia-profesional --name-only)",
+      "Bash(git -C /home/lorena/dualab_web show feature/familia-profesional:frontend/src/components/FamiliaCard.vue)",
+      "Bash(git -C /home/lorena/dualab_web show feature/familia-profesional:frontend/src/components/MicroretoCard.vue)",
+      "Bash(git -C /home/lorena/dualab_web show feature/familia-profesional:frontend/src/views/FamiliasView.vue)"
+    ]
+  }
+}
