@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 import Dashboard from './components/Dashboard.vue'
-import PantallaInicio from './modules/landing/PantallaInicio.vue'
+import PantallaInicio from './Modules/landing/PantallaInicio.vue'
 
 const pantalla = ref('inicio')
 const rol = ref(null)
