@@ -4,35 +4,40 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 
 class AuthenticatedSessionController extends Controller
 {
     /**
-     * Handle an incoming authentication request.
+     * Autentica al usuario y emite un token Sanctum con la ability de su rol.
      */
-    public function store(LoginRequest $request): Response
+    public function store(LoginRequest $request): JsonResponse
     {
         $request->authenticate();
 
-        $request->session()->regenerate();
+        $user    = Auth::user();
+        $ability = $user->role->value;
 
-        return response()->noContent();
+        $token = $user->createToken('auth_token', [$ability])->plainTextToken;
+
+        return response()->json([
+            'message' => 'Inicio de sesión correcto.',
+            'token'   => $token,
+            'user'    => $user,
+        ]);
     }
 
     /**
-     * Destroy an authenticated session.
+     * Revoca el token actual del usuario (equivalente a logout en API).
      */
-    public function destroy(Request $request): Response
+    public function destroy(Request $request): JsonResponse
     {
-        Auth::guard('web')->logout();
+        $request->user()->currentAccessToken()->delete();
 
-        $request->session()->invalidate();
-
-        $request->session()->regenerateToken();
-
-        return response()->noContent();
+        return response()->json([
+            'message' => 'Sesión cerrada con éxito.',
+        ]);
     }
 }
