@@ -6,7 +6,12 @@
       "Bash(git -C /home/lorena/dualab_web diff main..feature/familia-profesional --name-only)",
       "Bash(git -C /home/lorena/dualab_web show feature/familia-profesional:frontend/src/components/FamiliaCard.vue)",
       "Bash(git -C /home/lorena/dualab_web show feature/familia-profesional:frontend/src/components/MicroretoCard.vue)",
-      "Bash(git -C /home/lorena/dualab_web show feature/familia-profesional:frontend/src/views/FamiliasView.vue)"
+      "Bash(git -C /home/lorena/dualab_web show feature/familia-profesional:frontend/src/views/FamiliasView.vue)",
+      "Bash(git -C /home/lorena/dualab_web show feature/familia-profesional:frontend/src/data/familias.js)",
+      "Bash(git -C /home/lorena/dualab_web show feature/familia-profesional:frontend/src/data/mock.js)",
+      "Bash(git -C /home/lorena/dualab_web diff HEAD -- frontend/src/Modules/landing/PantallaInicio.vue)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:5173)",
+      "Bash(npm run *)"
     ]
   }
 }

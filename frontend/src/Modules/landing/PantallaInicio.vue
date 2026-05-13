@@ -1,6 +1,24 @@
 <script setup>
+import { ref, onMounted } from 'vue'
 import logo from '@/assets/Dualab_logo_sin_fondo_2.png'
+
 const emit = defineEmits(['login', 'formulario'])
+
+const resultsRef = ref(null)
+const resultsVisible = ref(false)
+
+onMounted(() => {
+  const observer = new IntersectionObserver(
+    ([entry]) => { if (entry.isIntersecting) resultsVisible.value = true },
+    { threshold: 0 }
+  )
+  if (resultsRef.value) {
+    observer.observe(resultsRef.value)
+  } else {
+    resultsVisible.value = true
+  }
+  setTimeout(() => { resultsVisible.value = true }, 600)
+})
 </script>
 
 <template>
@@ -10,80 +28,134 @@ const emit = defineEmits(['login', 'formulario'])
       <!-- NAV -->
       <nav class="nav">
         <div class="nav-logo">
-        <img :src="logo" alt="Dualab logo" class="logo-img" />
-        
+          <img :src="logo" alt="Dualab logo" class="logo-img" />
         </div>
-      <div class="nav-actions">
-        <span class="nav-hint">¿Ya tienes cuenta?</span>
-        <button class="nav-btn" @click="emit('login')">Iniciar sesión</button>
-      </div>
+        <div class="nav-actions">
+          <span class="nav-hint">¿Ya tienes cuenta?</span>
+          <button class="nav-btn" @click="emit('login')">Iniciar sesión</button>
+        </div>
       </nav>
 
-      <!-- HERO -->
-      <h1 class="title">
-        El puente entre empresa, formación y talento real.
-      </h1>
+      <!-- HERO 2 COLS -->
+      <div class="hero">
 
-      <p class="subtitle">
-        Las empresas plantean necesidades reales. El alumnado desarrolla soluciones reales antes de incorporarse al entorno profesional.
-      </p>
+        <!-- LEFT -->
+        <div class="hero-left">
+          <span class="hero-badge">Formación + Empresa</span>
+          <h1 class="hero-title">
+            Conectamos empresas<br>
+            con <em class="hero-accent">talento preparado.</em>
+          </h1>
+          <p class="hero-sub">
+            Alumnado dual resuelve retos reales de empresa en clase.<br>
+            La primera conexión antes de las prácticas.
+          </p>
+          <div class="hero-actions">
+            <button class="hero-cta-ghost" @click="emit('formulario', 'estudiante')">Explorar retos</button>
+          </div>
+        </div>
+
+        <!-- RIGHT: impacto -->
+        <div class="hero-right">
+          <div class="hero-impact">
+
+            <div class="impact-item">
+              <span class="impact-who">Empresas</span>
+              <p class="impact-desc">Conectan con talento preparado para resolver retos reales de su sector.</p>
+            </div>
+
+            <div class="impact-divider"></div>
+
+            <div class="impact-item">
+              <span class="impact-who">Centros educativos</span>
+              <p class="impact-desc">Agilizan la vinculación con empresas alineadas con cada perfil formativo.</p>
+            </div>
+
+            <div class="impact-divider"></div>
+
+            <div class="impact-item">
+              <span class="impact-who">Alumnado</span>
+              <p class="impact-desc">Llega a sus prácticas habiendo trabajado proyectos reales dentro del aula.</p>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
 
       <!-- ECOSISTEMA -->
       <div class="eco-section">
+        <p class="eco-label">Cómo funciona</p>
+        <div class="flow">
 
-        <div class="eco-wrap">
-          <div class="eco-flow">
-
-            <div class="eco-card">
-              <p class="eco-num">01</p>
-              <div class="eco-icon eco-icon--empresa">🏢</div>
-              <p class="eco-actor">Empresa</p>
-              <h3 class="eco-title">Plantea<br>necesidad</h3>
-              <p class="eco-desc">Un reto real del negocio.</p>
+          <div class="flow-photo flow-photo--lead">
+            <img
+              src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1000&h=640&fit=crop&q=85&auto=format"
+              alt="Empresa"
+              loading="lazy"
+            />
+            <div class="flow-photo-overlay"></div>
+            <div class="flow-photo-info">
+              <span class="flow-actor">Empresa</span>
+              <span class="flow-action">Plantea retos reales</span>
             </div>
-
-            <div class="eco-conn"><span></span></div>
-
-            <div class="eco-card eco-card--hub">
-              <p class="eco-hub-badge">núcleo</p>
-              <div class="eco-icon eco-icon--dualab">⚡</div>
-              <p class="eco-actor eco-actor--hub">Dualab</p>
-              <h3 class="eco-title eco-title--hub">Diseña el<br>microreto</h3>
-              <p class="eco-desc eco-desc--hub">Traduce la necesidad en reto pedagógico.</p>
-            </div>
-
-            <div class="eco-conn"><span></span></div>
-
-            <div class="eco-card">
-              <p class="eco-num">03</p>
-              <div class="eco-icon eco-icon--centro">🏫</div>
-              <p class="eco-actor">Centro educativo</p>
-              <h3 class="eco-title">Integra<br>en el aula</h3>
-              <p class="eco-desc">Actividad formativa real.</p>
-            </div>
-
-            <div class="eco-conn"><span></span></div>
-
-            <div class="eco-card">
-              <p class="eco-num">04</p>
-              <div class="eco-icon eco-icon--alumnado">🎓</div>
-              <p class="eco-actor">Alumnado</p>
-              <h3 class="eco-title">Desarrolla<br>la solución</h3>
-              <p class="eco-desc">Experiencia profesional real.</p>
-            </div>
-
           </div>
-        </div>
 
-        <div class="eco-success">
-          <span class="eco-success-spark">✦</span>
-          <div>
-            <p class="eco-success-label">Resultado del ciclo</p>
-            <p class="eco-success-title">Empresa detecta talento</p>
+          <div class="flow-photo">
+            <img
+              src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=700&h=560&fit=crop&q=85&auto=format"
+              alt="Centro educativo"
+              loading="lazy"
+            />
+            <div class="flow-photo-overlay"></div>
+            <div class="flow-photo-info">
+              <span class="flow-actor">Centro educativo</span>
+              <span class="flow-action">Integra en el aula</span>
+            </div>
           </div>
-        </div>
 
+          <div class="flow-photo">
+            <img
+              src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=700&h=560&fit=crop&q=85&auto=format"
+              alt="Alumnado"
+              loading="lazy"
+            />
+            <div class="flow-photo-overlay"></div>
+            <div class="flow-photo-info">
+              <span class="flow-actor">Alumnado</span>
+              <span class="flow-action">Desarrolla soluciones reales</span>
+            </div>
+          </div>
+
+        </div>
       </div>
+
+      <!-- RESULTADOS -->
+      <section ref="resultsRef" class="results" :class="{ 'results--visible': resultsVisible }">
+
+        <div class="results-head">
+          <span class="results-eyebrow">Impacto real</span>
+          <h2 class="results-title">
+            Una <em class="results-accent">conexión</em> más inteligente<br>
+            entre formación y <em class="results-accent">empresa</em>
+          </h2>
+        </div>
+
+        <div class="results-finale">
+          <div class="results-finale-glow"></div>
+          <div class="results-finale-inner">
+            <span class="results-finale-spark">✦</span>
+            <div>
+              <p class="results-finale-label">El resultado</p>
+              <p class="results-finale-text">
+                <strong>Dualab</strong> une formación y empresa en un flujo mucho más
+                <strong>eficiente</strong>, práctico y conectado con la realidad.
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </section>
 
       <!-- TARJETAS -->
       <div class="cards">
@@ -92,7 +164,7 @@ const emit = defineEmits(['login', 'formulario'])
           <span class="card-icon">🎓</span>
           <p class="card-role">Estudiante</p>
           <h3>Practica con casos reales</h3>
-          <p class="card-desc">Resuelve retos de empresa y construye tu portafolio.</p>
+          <p class="card-desc">Resuelve retos de empresa y construye tu portafolio antes de las prácticas.</p>
           <button class="card-cta" @click="emit('formulario', 'estudiante')">Explorar retos →</button>
         </div>
 
@@ -100,7 +172,7 @@ const emit = defineEmits(['login', 'formulario'])
           <span class="card-icon">🏫</span>
           <p class="card-role">Centro educativo</p>
           <h3>Gestiona tu alumnado</h3>
-          <p class="card-desc">Asigna retos y haz seguimiento del progreso.</p>
+          <p class="card-desc">Asigna retos y haz seguimiento del progreso de cada grupo.</p>
           <button class="card-cta" @click="emit('formulario', 'centro')">Solicitar demo →</button>
         </div>
 
@@ -108,40 +180,11 @@ const emit = defineEmits(['login', 'formulario'])
           <span class="card-icon">🏢</span>
           <p class="card-role">Empresa</p>
           <h3>Publica tus retos</h3>
-          <p class="card-desc">Encuentra talento joven resolviendo tus desafíos.</p>
+          <p class="card-desc">Encuentra talento joven resolviendo tus desafíos reales.</p>
           <button class="card-cta" @click="emit('formulario', 'empresa')">Empezar ahora →</button>
         </div>
 
       </div>
-
-      <!-- CÓMO FUNCIONA DETALLADO -->
-      <!-- /*<div class="how">
-
-        <h2 class="how-title">¿Cómo funciona?</h2>
-        <p class="how-sub">Un proceso simple para conectar talento con oportunidades</p>
-
-        <div class="steps">
-
-          <div class="step">
-            <div class="step-num">1</div>
-            <h4>Elige tu reto</h4>
-            <p>Explora retos organizados por nivel y área profesional.</p>
-          </div>
-
-          <div class="step">
-            <div class="step-num">2</div>
-            <h4>Desarrolla</h4>
-            <p>Aplica tus conocimientos y completa el reto.</p>
-          </div>
-
-          <div class="step">
-            <div class="step-num">3</div>
-            <h4>Destaca</h4>
-            <p>Añádelo a tu portfolio y demuestra tu talento.</p>
-          </div>
-
-        </div>
-      </div>*/ -->
 
     </div>
   </div>
@@ -152,83 +195,39 @@ const emit = defineEmits(['login', 'formulario'])
 .logo-img {
   height: 70px;
   width: auto;
-  filter: drop-shadow(0 4px 10px rgba(0,0,0,0.08));
   opacity: 0.92;
 }
 
-/* ─── LAYOUT BASE ────────────────────────────────────── */
+/* ─── LAYOUT ───────────────────────────────────────────── */
 .container {
   min-height: 100vh;
-  padding: 20px 40px 60px;
+  padding: 20px 48px 80px;
   font-family: sans-serif;
-  background: radial-gradient(circle at top, #f7fcf6 0%, #eef6ed 50%, #e6efe5 100%);
+  background: linear-gradient(135deg, #f0f5ea 0%, #ffffff 40%, #f5f8fb 100%);
 }
 
 .content {
-  max-width: 960px;
+  max-width: 1200px;
   margin: auto;
-  text-align: center;
 }
 
-/* ─── NAV ────────────────────────────────────────────── */
+/* ─── NAV ───────────────────────────────────────────────── */
 .nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 50px;
-  text-align: left;
+  margin-bottom: 48px;
 }
 
 .nav-logo {
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: 18px;
-  font-weight: 600;
-  color: #1F6935;
-}
-
-.logo-mark {
-  width: 28px;
-  height: 28px;
-  border-radius: 8px;
-  background: linear-gradient(160deg, #1F6935, #59BF38);
-}
-
-.nav-btn {
-  background: rgba(255, 255, 255, 0.55);
-  color: #1F6935;
-
-  border: 1px solid rgba(31, 105, 53, 0.15);
-  border-radius: 10px;
-
-  padding: 10px 20px;
-
-  font-size: 14px;
-  font-weight: 600;
-
-  cursor: pointer;
-
-  backdrop-filter: blur(8px);
-
-  transition: all 0.2s ease;
-}
-
-.nav-btn:hover {
-  background: white;
-  transform: translateY(-2px);
-
-  box-shadow: 0 10px 24px rgba(31, 105, 53, 0.08);
-}
-
-.nav-btn:active {
-  transform: scale(0.97);
 }
 
 .nav-actions {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
 }
 
 .nav-hint {
@@ -236,276 +235,532 @@ const emit = defineEmits(['login', 'formulario'])
   color: #75947F;
 }
 
-/* ─── HERO ───────────────────────────────────────────── */
-.title {
-  font-size: clamp(32px, 4vw, 52px);
+.nav-btn {
+  background: rgba(255,255,255,0.55);
+  color: #1F6935;
+  border: 1px solid rgba(31,105,53,0.15);
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition: all 0.2s ease;
+}
+
+.nav-btn:hover {
+  background: white;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(31,105,53,0.08);
+}
+
+/* ─── HERO 2 COLS ───────────────────────────────────────── */
+.hero {
+  display: grid;
+  grid-template-columns: 7fr 5fr;
+  gap: 56px;
+  align-items: center;
+  padding: 32px 0 88px;
+}
+
+.hero-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.hero-badge {
+  display: inline-block;
+  background: rgba(89,191,56,0.10);
+  border: 1px solid rgba(89,191,56,0.22);
+  border-radius: 999px;
+  padding: 5px 14px;
+  font-size: 12px;
   font-weight: 700;
-  max-width: 950px;
-  margin: 0 auto 24px;
-  line-height: 1.1;
-  color: #204b2d;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #1F6935;
+  margin-bottom: 28px;
 }
 
-.subtitle {
-  font-size: 20px;
-  color: #6f8776;
-  max-width: 720px;
-  margin: 0 auto 20px;
-  line-height: 1.6;
+.hero-title {
+  font-size: clamp(40px, 4.8vw, 62px);
+  font-weight: 900;
+  line-height: 1.06;
+  letter-spacing: -0.035em;
+  color: #111827;
+  margin-bottom: 22px;
+  font-style: normal;
 }
 
-/* ─── ECOSISTEMA ─────────────────────────────────────── */
-.eco-section {
-  margin: 0 auto 52px;
+.hero-accent {
+  font-style: normal;
+  background: linear-gradient(to right, #22c55e, #a3e635);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-.eco-wrap {
-  background: linear-gradient(160deg, rgba(255,255,255,0.65) 0%, rgba(242,250,242,0.45) 100%);
-  border: 1px solid rgba(255,255,255,0.82);
-  border-radius: 28px;
-  padding: 36px;
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
+.hero-sub {
+  font-size: 17px;
+  color: #4b5563;
+  line-height: 1.7;
+  margin: 0 0 38px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.hero-cta-primary {
+  background: linear-gradient(135deg, #22c55e, #59BF38);
+  color: #fff;
+  font-weight: 700;
+  font-size: 15px;
+  padding: 14px 26px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 16px rgba(89,191,56,0.30);
+}
+
+.hero-cta-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(89,191,56,0.40);
+}
+
+.hero-cta-ghost {
+  background: rgba(255,255,255,0.6);
+  color: #1F6935;
+  font-weight: 600;
+  font-size: 15px;
+  padding: 14px 26px;
+  border-radius: 12px;
+  border: 1px solid rgba(31,105,53,0.15);
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition: all 0.2s ease;
+}
+
+.hero-cta-ghost:hover {
+  background: white;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+}
+
+/* ─── HERO RIGHT IMPACT ─────────────────────────────────── */
+.hero-right {
+  align-self: center;
+}
+
+.hero-impact {
+  position: relative;
+  background: rgba(9, 21, 18, 0.91);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(89, 191, 56, 0.16);
+  border-radius: 22px;
+  padding: 8px 0;
+  overflow: hidden;
   box-shadow:
-    0 0 0 1px rgba(0,0,0,0.04),
-    0 24px 64px rgba(0,0,0,0.06),
-    inset 0 1px 0 rgba(255,255,255,1);
-  margin-bottom: 14px;
+    0 0 0 1px rgba(89, 191, 56, 0.06),
+    0 4px 16px rgba(0, 0, 0, 0.22),
+    0 22px 56px rgba(0, 0, 0, 0.30),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.32s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.eco-flow {
+/* glow top-right */
+.hero-impact::before {
+  content: '';
+  position: absolute;
+  top: -70px;
+  right: -70px;
+  width: 240px;
+  height: 240px;
+  background: radial-gradient(circle, rgba(89, 191, 56, 0.16) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+/* glow bottom-left */
+.hero-impact::after {
+  content: '';
+  position: absolute;
+  bottom: -50px;
+  left: -50px;
+  width: 180px;
+  height: 180px;
+  background: radial-gradient(circle, rgba(31, 105, 53, 0.12) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.hero-impact:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 0 0 1px rgba(89, 191, 56, 0.12),
+    0 10px 28px rgba(0, 0, 0, 0.28),
+    0 36px 72px rgba(0, 0, 0, 0.36),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.impact-item {
+  position: relative;
+  z-index: 1;
+  padding: 26px 32px;
+  transition: background 0.22s ease;
+}
+
+.impact-item:hover {
+  background: rgba(89, 191, 56, 0.05);
+}
+
+.impact-who {
   display: flex;
   align-items: center;
-  justify-content: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: #6ee840;
+  margin-bottom: 8px;
 }
 
-/* ── Card base ─────────────────────────────────── */
-.eco-card {
-  background: rgba(255,255,255,0.75);
-  border: 1px solid rgba(0,0,0,0.07);
-  border-radius: 20px;
-  padding: 24px 18px;
-  flex: 1;
-  max-width: 185px;
-  text-align: left;
+.impact-who::before {
+  content: '';
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #59BF38;
+  flex-shrink: 0;
+  box-shadow: 0 0 7px rgba(89, 191, 56, 0.70);
+}
+
+.impact-desc {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.60);
+  line-height: 1.70;
+  margin: 0;
+}
+
+.impact-divider {
+  position: relative;
+  z-index: 1;
+  height: 1px;
+  background: rgba(89, 191, 56, 0.09);
+  margin: 0 32px;
+}
+
+/* ─── ECOSISTEMA ────────────────────────────────────────── */
+.eco-section {
+  margin-bottom: 40px;
+}
+
+.eco-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #59BF38;
+  margin-bottom: 20px;
+}
+
+.flow {
+  display: grid;
+  grid-template-columns: 1.45fr 1fr 1fr;
+  gap: 18px;
+  align-items: stretch;
+}
+
+.flow-photo {
+  position: relative;
+  height: 380px;
+  border-radius: 22px;
+  overflow: hidden;
+  cursor: pointer;
   box-shadow:
-    0 1px 2px rgba(0,0,0,0.04),
-    0 4px 12px rgba(0,0,0,0.03),
-    inset 0 1px 0 rgba(255,255,255,0.8);
+    0 2px 8px rgba(0, 0, 0, 0.10),
+    0 12px 36px rgba(0, 0, 0, 0.16),
+    0 28px 64px rgba(0, 0, 0, 0.10);
+  transition:
+    transform 0.36s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.36s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.flow-photo--lead {
+  border-radius: 24px;
+}
+
+.flow-photo:hover {
+  transform: translateY(-6px) scale(1.005);
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.12),
+    0 20px 52px rgba(0, 0, 0, 0.22),
+    0 40px 80px rgba(0, 0, 0, 0.14);
+}
+
+.flow-photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.80;
+  filter: contrast(1.06) saturate(1.05);
+  transition:
+    transform 0.70s ease-out,
+    opacity 0.40s ease,
+    filter 0.40s ease;
+}
+
+.flow-photo:hover img {
+  transform: scale(1.05);
+  opacity: 0.92;
+  filter: contrast(1.10) saturate(1.08);
+}
+
+.flow-photo-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(135deg, rgba(9, 21, 18, 0.28) 0%, transparent 42%),
+    linear-gradient(to top, rgba(0, 0, 0, 0.80) 0%, rgba(0, 0, 0, 0.22) 46%, transparent 100%);
+}
+
+.flow-photo-info {
+  position: absolute;
+  bottom: 18px;
+  left: 18px;
+  padding: 10px 16px 11px;
+  background: rgba(0, 0, 0, 0.36);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 14px;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.flow-actor {
+  display: block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(174, 229, 101, 0.80);
+}
+
+.flow-action {
+  display: block;
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+/* ─── RESULTADOS ────────────────────────────────────────── */
+.results {
+  padding: 24px 0 40px;
+  position: relative;
+}
+
+.results::before {
+  content: '';
+  position: absolute;
+  top: -60px; left: 50%;
+  transform: translateX(-50%);
+  width: 860px;
+  height: 300px;
+  background: radial-gradient(ellipse at center, rgba(89,191,56,0.055) 0%, transparent 68%);
+  pointer-events: none;
+}
+
+.results-head {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.results-eyebrow {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: #59BF38;
+  margin-bottom: 8px;
+}
+
+.results-title {
+  font-size: clamp(24px, 3vw, 40px);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: #111827;
+  font-style: normal;
+}
+
+.results-accent {
+  font-style: normal;
+  background: linear-gradient(135deg, #22c55e 0%, #59BF38 50%, #AEE565 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.results-box {
+  background: #fff;
+  border: 1px solid rgba(89,191,56,0.20);
+  border-left: 3px solid #59BF38;
+  border-radius: 18px;
+  padding: 8px 0;
+  margin-bottom: 24px;
+  box-shadow:
+    0 2px 8px rgba(0,0,0,0.05),
+    0 8px 28px rgba(31,105,53,0.07);
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+.results--visible .results-box {
+  animation: fadeUp 0.55s ease 0.05s forwards;
+}
+
+.results-box-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 20px 28px;
+}
+
+.results-box-dot {
+  flex-shrink: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #59BF38;
+  margin-top: 6px;
+}
+
+.results-box-who {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: #59BF38;
+  margin-bottom: 4px;
+}
+
+.results-box-item p {
+  font-size: 14px;
+  color: #374151;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.results-box-divider {
+  height: 1px;
+  background: rgba(89,191,56,0.10);
+  margin: 0 28px;
+}
+
+.results-finale {
+  position: relative;
+  background: linear-gradient(150deg, rgba(18, 52, 32, 0.78) 0%, rgba(9, 21, 18, 0.86) 100%);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  transition: transform 0.28s ease-out, box-shadow 0.28s ease-out;
+  border: 1px solid rgba(89, 191, 56, 0.13);
+  border-radius: 20px;
+  padding: 22px 36px;
+  overflow: hidden;
+  box-shadow:
+    0 0 0 1px rgba(89, 191, 56, 0.06),
+    0 10px 32px rgba(9, 21, 18, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  opacity: 0;
+  transform: translateY(28px);
 }
 
-.eco-card:hover {
-  transform: translateY(-6px);
-  box-shadow:
-    0 20px 40px rgba(0,0,0,0.09),
-    0 8px 20px rgba(0,0,0,0.05),
-    inset 0 1px 0 rgba(255,255,255,0.9);
+.results--visible .results-finale {
+  animation: fadeUp 0.55s ease 0.46s forwards;
 }
 
-/* ── Hub card — Dualab ─────────────────────────── */
-.eco-card--hub {
-  background: linear-gradient(160deg, #1c5e30 0%, #23523a 100%);
-  border-color: rgba(89,191,56,0.22);
-  box-shadow:
-    0 0 0 1px rgba(89,191,56,0.10),
-    0 8px 32px rgba(31,105,53,0.28),
-    0 0 60px rgba(89,191,56,0.07),
-    inset 0 1px 0 rgba(255,255,255,0.07);
-  transform: scale(1.05);
+.results-finale-glow {
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 220px;
+  height: 220px;
+  background: radial-gradient(circle, rgba(89, 191, 56, 0.12) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.results-finale-inner {
+  display: flex;
+  align-items: center;
+  gap: 22px;
   position: relative;
   z-index: 1;
 }
 
-.eco-card--hub:hover {
-  transform: scale(1.05) translateY(-6px);
-  box-shadow:
-    0 0 0 1px rgba(89,191,56,0.18),
-    0 24px 48px rgba(31,105,53,0.38),
-    0 0 80px rgba(89,191,56,0.10),
-    inset 0 1px 0 rgba(255,255,255,0.10);
-}
-
-/* ── Connector ─────────────────────────────────── */
-.eco-conn {
+.results-finale-spark {
+  font-size: 26px;
+  color: #AEE565;
+  filter: drop-shadow(0 0 10px rgba(174, 229, 101, 0.55));
   flex-shrink: 0;
-  width: 32px;
-  display: flex;
-  align-items: center;
+  line-height: 1;
 }
 
-.eco-conn span {
-  display: block;
-  position: relative;
-  width: 100%;
-  height: 1px;
-  background: linear-gradient(to right, rgba(89,191,56,0.1), rgba(89,191,56,0.45), rgba(89,191,56,0.1));
-}
-
-.eco-conn span::before {
-  content: '';
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: rgba(89,191,56,0.5);
-  box-shadow: 0 0 6px rgba(89,191,56,0.4);
-}
-
-.eco-conn span::after {
-  content: '';
-  position: absolute;
-  right: 0;
-  top: -3px;
-  width: 7px;
-  height: 7px;
-  border-right: 1.5px solid rgba(89,191,56,0.5);
-  border-top: 1.5px solid rgba(89,191,56,0.5);
-  transform: rotate(45deg);
-}
-
-/* ── Step number ───────────────────────────────── */
-.eco-num {
+.results-finale-label {
   font-size: 10px;
   font-weight: 700;
-  letter-spacing: 0.10em;
+  letter-spacing: 0.13em;
   text-transform: uppercase;
-  color: #9ca3af;
-  margin-bottom: 12px;
+  color: rgba(174, 229, 101, 0.60);
+  margin-bottom: 6px;
 }
 
-/* ── Hub badge ─────────────────────────────────── */
-.eco-hub-badge {
-  display: inline-block;
-  background: rgba(89,191,56,0.18);
-  border: 1px solid rgba(89,191,56,0.28);
-  border-radius: 999px;
-  padding: 2px 9px;
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 0.10em;
-  text-transform: uppercase;
-  color: rgba(174,229,101,0.85);
-  margin-bottom: 12px;
-}
-
-/* ── Icon wrap ─────────────────────────────────── */
-.eco-icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 12px;
-  border: 1px solid;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 17px;
-  margin-bottom: 12px;
-}
-
-.eco-icon--empresa  { background: rgba(31,105,53,0.08);    border-color: rgba(31,105,53,0.20); }
-.eco-icon--dualab   { background: rgba(89,191,56,0.18);    border-color: rgba(89,191,56,0.30); }
-.eco-icon--centro   { background: rgba(117,148,127,0.10);  border-color: rgba(117,148,127,0.25); }
-.eco-icon--alumnado { background: rgba(174,229,101,0.15);  border-color: rgba(174,229,101,0.35); }
-
-/* ── Actor / Title / Desc ──────────────────────── */
-.eco-actor {
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #9ca3af;
-  margin-bottom: 5px;
-}
-.eco-actor--hub { color: rgba(255,255,255,0.48); }
-
-.eco-title {
-  font-size: 14px;
-  font-weight: 800;
-  color: #111827;
-  line-height: 1.2;
-  letter-spacing: -0.02em;
-  margin-bottom: 8px;
-}
-.eco-title--hub { color: #fff; }
-
-.eco-desc {
-  font-size: 11px;
-  color: #9ca3af;
-  line-height: 1.6;
-}
-.eco-desc--hub { color: rgba(255,255,255,0.48); }
-
-/* ── Success card ──────────────────────────────── */
-.eco-success {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  background: rgba(255,255,255,0.75);
-  border: 1px solid rgba(89,191,56,0.14);
-  border-left: 3px solid #59BF38;
-  border-radius: 16px;
-  padding: 20px 28px;
-  text-align: left;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  box-shadow:
-    0 1px 2px rgba(0,0,0,0.04),
-    0 0 28px rgba(89,191,56,0.06),
-    inset 0 1px 0 rgba(255,255,255,0.9);
-}
-
-.eco-success-spark {
-  font-size: 22px;
-  color: #59BF38;
-  filter: drop-shadow(0 0 8px rgba(89,191,56,0.5));
-  flex-shrink: 0;
-}
-
-.eco-success-label {
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.10em;
-  text-transform: uppercase;
-  color: #9ca3af;
-  margin-bottom: 3px;
-}
-
-.eco-success-title {
+.results-finale-text {
   font-size: 16px;
-  font-weight: 800;
-  color: #1F6935;
-  letter-spacing: -0.02em;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.78);
+  line-height: 1.6;
+  letter-spacing: -0.01em;
+  max-width: 640px;
 }
 
-/* ─── TARJETAS ───────────────────────────────────────── */
+.results-finale-text strong {
+  color: #AEE565;
+  font-weight: 700;
+}
+
+/* ─── TARJETAS ──────────────────────────────────────────── */
 .cards {
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 24px;
-  margin-top: 0px;
+  margin-top: 52px;
 }
 
 .card {
   background: #ffffff;
-  border: 0.5px solid #C6D8C6;
-  border-top-width: 3px;
-  border-radius: 16px;
-  padding: 28px 24px;
-  width: 260px;
+  border: 1px solid #C6D8C6;
+  border-top: 3px solid;
+  border-radius: 18px;
+  padding: 36px 32px;
   text-align: left;
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-  min-height: unset;
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
 }
 
 .card:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 18px 40px rgba(31, 105, 53, 0.12);
+  transform: translateY(-8px);
+  box-shadow: 0 20px 48px rgba(31,105,53,0.13);
 }
 
 .card-student { border-top-color: #59BF38; --accent: #59BF38; }
@@ -513,40 +768,41 @@ const emit = defineEmits(['login', 'formulario'])
 .card-company { border-top-color: #75947F; --accent: #75947F; }
 
 .card-icon {
-  font-size: 28px;
+  font-size: 32px;
   display: block;
-  margin-bottom: 14px;
+  margin-bottom: 18px;
 }
 
 .card-role {
   font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.07em;
+  font-weight: 700;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--accent);
-  margin-bottom: 6px;
-}
-
-.card h3 {
-  font-size: 16px;
-  font-weight: 600;
-  color: #1F6935;
   margin-bottom: 8px;
 }
 
+.card h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1F6935;
+  margin-bottom: 10px;
+  letter-spacing: -0.01em;
+}
+
 .card-desc {
-  font-size: 13px;
+  font-size: 14px;
   color: #75947F;
-  line-height: 1.55;
+  line-height: 1.6;
+  margin-bottom: 24px;
 }
 
 .card-cta {
   background: none;
   border: none;
   padding: 0;
-  margin-top: 18px;
   font-size: 13px;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--accent);
   cursor: pointer;
   display: inline-flex;
@@ -556,75 +812,18 @@ const emit = defineEmits(['login', 'formulario'])
 }
 
 .card-cta:hover {
-  gap: 8px;
+  gap: 10px;
 }
 
-/* ─── SECCIÓN HOW DETALLADA ──────────────────────────── */
-.how {
-  background: #ffffff;
-  border: 0.5px solid #C6D8C6;
-  border-radius: 20px;
-  padding: 52px 40px;
-  margin-top: 56px;
+/* ─── ANIMACIONES ───────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-.how-title {
-  font-size: 24px;
-  font-weight: 600;
-  color: #1F6935;
-  margin-bottom: 10px;
-}
-
-.how-sub {
-  font-size: 15px;
-  color: #75947F;
-  margin-bottom: 36px;
-}
-
-/* ─── PASOS ──────────────────────────────────────────── */
-.steps {
-  display: flex;
-  gap: 20px;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.step {
-  max-width: 220px;
-  text-align: left;
-}
-
-.step-num {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  background: #f0f9e0;
-  border: 1px solid #d4efaa;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 13px;
-  font-weight: 600;
-  color: #1F6935;
-  margin-bottom: 12px;
-}
-
-.step h4 {
-  font-size: 15px;
-  font-weight: 600;
-  color: #1F6935;
-  margin-bottom: 6px;
-}
-
-.step p {
-  font-size: 13px;
-  color: #75947F;
-  line-height: 1.5;
-}
-
-.card-student {
-  transform: scale(1.03);
-  box-shadow: 0 10px 30px rgba(31,105,53,0.15);
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.35; }
 }
 
 </style>
