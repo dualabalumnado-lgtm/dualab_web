@@ -18,6 +18,7 @@ class RegisterRequest extends FormRequest
     {
         return [
             'name'     => ['required', 'string', 'max:255'],
+            'username' => ['required', 'string', 'lowercase', 'max:50', 'unique:users,username', 'regex:/^[a-z]+(\.[a-z]+)*$/'],
             'email'    => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:users,email'],
             'password' => ['required', 'confirmed', Password::defaults()],
             'role'     => ['required', 'string', Rule::enum(UserRole::class)],
@@ -41,7 +42,9 @@ class RegisterRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'cif.required' => 'El CIF es obligatorio para empresas y centros educativos.',
+            'username.regex'  => 'Por favor, usa un nombre de usuario profesional (ej: nombre.apellido) para facilitar el seguimiento de tu cuenta.',
+            'username.unique' => 'Este nombre de usuario ya está en uso.',
+            'cif.required'    => 'El CIF es obligatorio para empresas y centros educativos.',
             'cif.unique'   => 'Este CIF ya está registrado.',
             'cif.max'      => 'El CIF no puede superar los 9 caracteres.',
             'role.enum'    => 'El tipo de cuenta no es válido. Valores permitidos: alumno, centro_educativo, empresa.',
