@@ -1,21 +1,18 @@
 import { fileURLToPath, URL } from 'node:url'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-// import vueDevTools from 'vite-plugin-vue-devtools'
 
-// https://vite.dev/config/
 export default defineConfig({
-  plugins: [
-    vue(),
-    // vueDevTools(),
-  ],
+  plugins: [vue()],
   server: {
-    proxy: {
-      '/api': {
-        target: 'http://127.0.0.1',
-        changeOrigin: true,
-      }
-    }
+    host: '0.0.0.0',
+    port: 5173,
+    allowedHosts: 'all',
+    hmr: {
+      // El navegador conecta el WebSocket del HMR al puerto público (80),
+      // que Nginx redirige internamente a Vite:5173.
+      clientPort: 80,
+    },
   },
   resolve: {
     alias: {
