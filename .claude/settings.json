@@ -2,7 +2,19 @@
   "permissions": {
     "allow": [
       "Bash(curl -s http://localhost/api/microretos/5)",
-      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\('objetivos:', len\\(d['objetivos']\\), '| recursos:', len\\(d['recursos']\\)\\); print\\('recursos:'\\); [print\\(f'  {r}'\\) for r in d['recursos']]\")"
+      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\('objetivos:', len\\(d['objetivos']\\), '| recursos:', len\\(d['recursos']\\)\\); print\\('recursos:'\\); [print\\(f'  {r}'\\) for r in d['recursos']]\")",
+      "Bash(sudo chown -R lorena:lorena docker/)",
+      "Bash(git checkout *)",
+      "Bash(curl -s http://localhost/api/familias)",
+      "Bash(docker exec *)",
+      "Bash(docker restart *)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" \"https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1280&h=720&fit=crop\")",
+      "Bash(curl -s \"http://localhost/api/familias\")",
+      "Bash(python3 -c \"import json,sys; d=json.load\\(sys.stdin\\); print\\(d[0].get\\('imagen','NO IMAGEN'\\)\\)\")",
+      "Bash(curl -s \"http://localhost/\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" -H \"Referer: http://localhost/\" \"https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1280&h=720&fit=crop\")",
+      "Bash(curl -I \"http://localhost/\")",
+      "Bash(curl -v \"http://localhost/api/familias\")"
     ]
   }
 }

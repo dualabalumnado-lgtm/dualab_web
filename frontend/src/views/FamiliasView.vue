@@ -1,45 +1,59 @@
 <script setup>
-import { ref, computed, onMounted } from 'vue'
-import FamiliaCard from "../components/FamiliaCard.vue"
-import { getFamilias } from "../services/api"
-import { useRouter } from "vue-router"
+import { ref, computed } from 'vue'
+import { useRouter } from 'vue-router'
+import FamiliaCard from '../components/FamiliaCard.vue'
 
 const router = useRouter()
-const go = (id) => router.push(`/familia/${id}`)
 
-const familias     = ref([])
-const busqueda     = ref('')
 const filtroActivo = ref('Todas')
 
-onMounted(async () => {
-  familias.value = await getFamilias()
-})
+const sectores = [
+  {
+    nombre: 'Tecnología',
+    icono: '💻',
+    imagen: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=1280&h=720&fit=crop',
+    gridClass: 'col-span-1 lg:col-span-3',
+    compact: false,
+  },
+  {
+    nombre: 'Arte y Diseño',
+    icono: '🎨',
+    imagen: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=1280&h=720&fit=crop',
+    gridClass: 'col-span-1 lg:col-span-3',
+    compact: false,
+  },
+  {
+    nombre: 'Salud',
+    icono: '🏥',
+    imagen: 'https://images.unsplash.com/photo-1551076805-e1869033e561?w=1280&h=720&fit=crop',
+    gridClass: 'col-span-1 lg:col-span-2',
+    compact: true,
+  },
+  {
+    nombre: 'Servicios',
+    icono: '🤝',
+    imagen: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1280&h=720&fit=crop',
+    gridClass: 'col-span-1 lg:col-span-2',
+    compact: true,
+  },
+  {
+    nombre: 'Naturaleza',
+    icono: '🌿',
+    imagen: 'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=1280&h=720&fit=crop',
+    gridClass: 'col-span-2 lg:col-span-2',
+    compact: true,
+  },
+]
 
-const sectores = {
-  'Tecnología':    ['Electricidad y Electrónica', 'Energía y Agua', 'Fabricación Mecánica', 'Industrias Extractivas', 'Informática y Comunicaciones', 'Instalación y Mantenimiento', 'Química'],
-  'Arte y Diseño': ['Artes Gráficas', 'Artes y Artesanías', 'Imagen Personal', 'Imagen y Sonido', 'Textil, Confección y Piel', 'Vidrio y Cerámica'],
-  'Salud':         ['Actividades Físicas y Deportivas', 'Sanidad'],
-  'Servicios':     ['Administración y Gestión', 'Comercio y Marketing', 'Hostelería y Turismo', 'Seguridad y Medioambiente', 'Servicios Socioculturales', 'Transporte y Mantenimiento de Vehículos'],
-  'Naturaleza':    ['Agraria', 'Edificación y Obra Civil', 'Madera, Mueble y Corcho', 'Marítimo Pesquera'],
-}
+const filtros = ['Todas', ...sectores.map(s => s.nombre)]
 
-const filtros = ['Todas', ...Object.keys(sectores)]
+const sectoresFiltrados = computed(() =>
+  filtroActivo.value === 'Todas'
+    ? sectores
+    : sectores.filter(s => s.nombre === filtroActivo.value)
+)
 
-const familiasFiltradas = computed(() => {
-  let lista = familias.value
-
-  if (filtroActivo.value !== 'Todas') {
-    const nombres = sectores[filtroActivo.value]
-    lista = lista.filter(f => nombres.includes(f.nombre))
-  }
-
-  if (busqueda.value.trim()) {
-    const q = busqueda.value.toLowerCase()
-    lista = lista.filter(f => f.nombre.toLowerCase().includes(q))
-  }
-
-  return lista
-})
+const go = (nombre) => router.push(`/sector/${encodeURIComponent(nombre)}`)
 </script>
 
 <template>
@@ -57,19 +71,6 @@ const familiasFiltradas = computed(() => {
         <p class="text-gray-500 dark:text-gray-400 text-base mb-8">
           Encuentra microretos alineados con cada área de FP
         </p>
-
-        <!-- Buscador -->
-        <div class="relative mb-5 max-w-sm mx-auto">
-          <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 text-sm pointer-events-none">
-            🔍
-          </span>
-          <input
-            v-model="busqueda"
-            type="text"
-            placeholder="Buscar familia…"
-            class="w-full pl-9 pr-4 py-2.5 rounded-xl text-sm shadow-sm border border-gray-200 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-green-400 transition"
-          />
-        </div>
 
         <!-- Filtros -->
         <div class="flex flex-wrap justify-center gap-2 mb-8">
@@ -97,31 +98,33 @@ const familiasFiltradas = computed(() => {
       </div>
     </div>
 
-    <!-- Cards -->
+    <!-- Sector Cards -->
     <div class="max-w-7xl mx-auto px-6 py-10">
-
-      <!-- Sin resultados -->
-      <div v-if="familiasFiltradas.length === 0" class="text-center py-20 text-gray-400 dark:text-gray-500">
-        <p class="text-5xl mb-4">🔎</p>
-        <p class="text-lg font-medium">No se encontraron familias</p>
-        <p class="text-sm mt-1">Prueba con otro término o filtro</p>
-      </div>
-
-      <!-- Grid unificado -->
-      <div
-        v-else
-        class="grid grid-cols-2 lg:grid-cols-4 gap-3"
-      >
+      <div class="grid grid-cols-2 lg:grid-cols-6 gap-3 sector-grid">
         <FamiliaCard
-          v-for="(f, i) in familiasFiltradas"
-          :key="f.id"
-          :familia="f"
-          :compact="i >= 2"
-          :class="{ 'col-span-2': i < 2 }"
-          @click="go(f.id)"
+          v-for="s in sectoresFiltrados"
+          :key="s.nombre"
+          :familia="s"
+          :compact="sectoresFiltrados.length === 1 ? false : s.compact"
+          :large="true"
+          :class="sectoresFiltrados.length === 1 ? 'col-span-2 lg:col-span-6' : s.gridClass"
+          @click="go(s.nombre)"
         />
       </div>
-
     </div>
+
   </div>
 </template>
+
+<style scoped>
+.sector-grid:hover > * {
+  opacity: 0.45;
+  transition: opacity 0.25s ease;
+}
+.sector-grid:hover > *:hover {
+  opacity: 1;
+}
+.sector-grid > * {
+  transition: opacity 0.25s ease;
+}
+</style>

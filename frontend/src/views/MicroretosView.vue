@@ -3,14 +3,21 @@ import { ref, computed, onMounted } from 'vue'
 import { Search } from 'lucide-vue-next'
 import MicroretoCard from '../components/MicroretoCard.vue'
 import { getMicroretos } from '../services/api'
+import { familias as familiasLocal, microretos as microretosLocal } from '../data/mock'
 
-const microretos       = ref([])
+const familiasMap = Object.fromEntries(familiasLocal.map(f => [f.id, f]))
+const microretosConFamilia = microretosLocal.map(m => ({ ...m, familia: familiasMap[m.familiaId] ?? null }))
+
+const microretos       = ref(microretosConFamilia)
 const busqueda         = ref('')
 const dificultadActiva = ref('Todas')
 const niveles = ['Todas', 'Básico', 'Intermedio', 'Avanzado']
 
 onMounted(async () => {
-  microretos.value = await getMicroretos()
+  try {
+    const data = await getMicroretos()
+    if (data?.length) microretos.value = data
+  } catch { /* mantiene los datos locales */ }
 })
 
 const retosFiltrados = computed(() => {

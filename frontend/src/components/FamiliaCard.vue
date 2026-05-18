@@ -2,6 +2,7 @@
 defineProps({
   familia: Object,
   compact: { type: Boolean, default: false },
+  large:   { type: Boolean, default: false },
 })
 </script>
 
@@ -24,20 +25,20 @@ defineProps({
     />
 
     <!-- Glass pill — pequeño, bottom-left, ancho automático -->
-    <div class="absolute bottom-3 left-3">
-      <div style="
+    <div :class="large ? 'absolute bottom-5 left-5' : 'absolute bottom-3 left-3'">
+      <div :style="`
         background: rgba(0, 0, 0, 0.35);
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
-        border-radius: 14px;
-        padding: 7px 12px;
+        border-radius: ${large ? '18px' : '14px'};
+        padding: ${large ? '10px 18px' : '7px 12px'};
         display: inline-flex;
         align-items: center;
-        gap: 7px;
+        gap: ${large ? '10px' : '7px'};
         border: 1px solid rgba(255,255,255,0.10);
-      ">
-        <span style="font-size: 13px; line-height: 1;">{{ familia.icono }}</span>
-        <span style="color: #fff; font-size: 11px; font-weight: 600; letter-spacing: -0.01em; line-height: 1; white-space: nowrap;">
+      `">
+        <span :style="`font-size: ${large ? '22px' : '13px'}; line-height: 1;`">{{ familia.icono }}</span>
+        <span :style="`color: #fff; font-size: ${large ? '18px' : '11px'}; font-weight: ${large ? '700' : '600'}; letter-spacing: -0.01em; line-height: 1; white-space: nowrap;`">
           {{ familia.nombre }}
         </span>
       </div>

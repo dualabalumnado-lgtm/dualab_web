@@ -1,16 +1,25 @@
 <script setup>
 import { ref, computed, onMounted } from "vue"
 import { useRoute, useRouter } from "vue-router"
-import { Sprout, Zap, Flame, Target, BookOpen, ArrowLeft, Package } from "lucide-vue-next"
+import { Sprout, Zap, Flame, Target, BookOpen, ArrowLeft, Package, Lightbulb } from "lucide-vue-next"
 import { getMicroreto } from "../services/api"
+import { familias as familiasLocal, microretos as microretosLocal } from "../data/mock"
 
 const route  = useRoute()
 const router = useRouter()
 
-const reto = ref(null)
+const id = Number(route.params.id)
+const retoBase = microretosLocal.find(m => m.id === id) ?? null
+const familiasMap = Object.fromEntries(familiasLocal.map(f => [f.id, f]))
+const reto = ref(
+  retoBase ? { ...retoBase, familia: familiasMap[retoBase.familiaId] ?? null } : null
+)
 
 onMounted(async () => {
-  reto.value = await getMicroreto(route.params.id)
+  try {
+    const data = await getMicroreto(route.params.id)
+    if (data?.id) reto.value = { ...data, solucion: retoBase?.solucion ?? null }
+  } catch { /* mantiene los datos locales */ }
 })
 
 const nivel = computed(() => ({
@@ -202,6 +211,54 @@ const nivel = computed(() => ({
 
         </div>
 
+        <!-- ── SOLUCIÓN DE EJEMPLO ─────────────────────────────── -->
+        <div
+          v-if="reto.solucion"
+          v-motion
+          :initial="{ opacity: 0, y: 20 }"
+          :enter="{ opacity: 1, y: 0, transition: { duration: 450, delay: 320 } }"
+          class="detail-card mt-6"
+        >
+          <!-- Cabecera -->
+          <div class="flex items-center gap-3 mb-6 flex-wrap">
+            <div class="icon-wrap" style="background: rgba(245,158,11,0.1); border-color: rgba(245,158,11,0.2);">
+              <Lightbulb :size="17" style="color: #d97706;" />
+            </div>
+            <div>
+              <p class="section-label">Lo que entregaría un alumno</p>
+              <h2 class="section-title">Ejemplo de solución</h2>
+            </div>
+            <span class="count-badge ml-auto" style="background: rgba(245,158,11,0.08); color: #b45309; border-color: rgba(245,158,11,0.2);">
+              {{ reto.solucion.tipo }}
+            </span>
+          </div>
+
+          <!-- Contenido: paper preview + puntos clave -->
+          <div class="grid grid-cols-1 lg:grid-cols-5 gap-6">
+
+            <!-- Paper preview -->
+            <div class="lg:col-span-3">
+              <pre class="solution-paper">{{ reto.solucion.extracto }}</pre>
+            </div>
+
+            <!-- Puntos destacados -->
+            <div class="lg:col-span-2 flex flex-col justify-center gap-3">
+              <p style="font-size: 11px; font-weight: 700; letter-spacing: 0.10em; text-transform: uppercase; color: #9ca3af; margin-bottom: 2px;">
+                Puntos destacados
+              </p>
+              <div
+                v-for="(punto, i) in reto.solucion.puntos"
+                :key="i"
+                class="sol-punto"
+              >
+                <span class="sol-check">✓</span>
+                <span>{{ punto }}</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
         <!-- ── META STATS ───────────────────────────────────────── -->
         <div
           v-motion
@@ -377,5 +434,46 @@ const nivel = computed(() => ({
 @keyframes fadeSlide {
   from { opacity: 0; transform: translateY(6px); }
   to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Solución de ejemplo ────────────────────────────────── */
+.solution-paper {
+  font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace;
+  font-size: 0.775rem;
+  line-height: 1.7;
+  color: #374151;
+  background: #fafaf8;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 14px;
+  padding: 20px 22px;
+  white-space: pre-wrap;
+  word-break: break-word;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+  margin: 0;
+}
+
+.sol-punto {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 11px 14px;
+  border-radius: 12px;
+  background: rgba(245, 158, 11, 0.05);
+  border: 1px solid rgba(245, 158, 11, 0.14);
+  font-size: 0.845rem;
+  color: #374151;
+  line-height: 1.5;
+  transition: background 0.18s, border-color 0.18s;
+}
+.sol-punto:hover {
+  background: rgba(245, 158, 11, 0.09);
+  border-color: rgba(245, 158, 11, 0.25);
+}
+.sol-check {
+  color: #d97706;
+  font-weight: 800;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+  margin-top: 1px;
 }
 </style>

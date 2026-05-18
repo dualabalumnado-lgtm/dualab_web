@@ -7,6 +7,7 @@ export default defineConfig({
   server: {
     host: '0.0.0.0',
     port: 5173,
+    allowedHosts: 'all',
     hmr: {
       // El navegador conecta el WebSocket del HMR al puerto público (80),
       // que Nginx redirige internamente a Vite:5173.

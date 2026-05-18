@@ -3,16 +3,27 @@ import { ref, computed, onMounted } from "vue"
 import { useRoute, useRouter } from "vue-router"
 import { ArrowLeft, BookOpen } from "lucide-vue-next"
 import { getFamilia } from "../services/api"
+import { familias as familiasLocal } from "../data/familias"
+import { microretos as microretosLocal } from "../data/mock"
 import MicroretoCard from "../components/MicroretoCard.vue"
 
 const route  = useRoute()
 const router = useRouter()
 
-const familia = ref(null)
-const retos   = computed(() => familia.value?.microretos ?? [])
+const id = Number(route.params.id)
+const familiaBase = familiasLocal.find(f => f.id === id) ?? null
+const familia = ref(
+  familiaBase
+    ? { ...familiaBase, microretos: microretosLocal.filter(m => m.familiaId === id) }
+    : null
+)
+const retos = computed(() => familia.value?.microretos ?? [])
 
 onMounted(async () => {
-  familia.value = await getFamilia(route.params.id)
+  try {
+    const data = await getFamilia(route.params.id)
+    if (data?.id) familia.value = data
+  } catch { /* mantiene los datos locales */ }
 })
 </script>
 
