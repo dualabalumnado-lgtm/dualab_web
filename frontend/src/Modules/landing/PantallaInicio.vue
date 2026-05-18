@@ -1,11 +1,16 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import logo from '@/assets/Dualab_logo_sin_fondo_2.png'
+import FeatureSection from '@/components/FeatureSection.vue'
 
 const emit = defineEmits(['login', 'formulario'])
 
 const resultsRef = ref(null)
 const resultsVisible = ref(false)
+
+function scrollTo(id) {
+  document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+}
 
 onMounted(() => {
   const observer = new IntersectionObserver(
@@ -30,8 +35,12 @@ onMounted(() => {
         <div class="nav-logo">
           <img :src="logo" alt="Dualab logo" class="logo-img" />
         </div>
+        <div class="nav-links">
+          <button class="nav-link" @click="scrollTo('bloque-estudiantes')">Estudiantes</button>
+          <button class="nav-link" @click="scrollTo('bloque-centros')">Centros educativos</button>
+          <button class="nav-link" @click="scrollTo('bloque-empresas')">Empresas</button>
+        </div>
         <div class="nav-actions">
-          <span class="nav-hint">¿Ya tienes cuenta?</span>
           <button class="nav-btn" @click="emit('login')">Iniciar sesión</button>
         </div>
       </nav>
@@ -55,27 +64,44 @@ onMounted(() => {
           </div>
         </div>
 
-        <!-- RIGHT: impacto -->
+        <!-- RIGHT: ecosistema visual -->
         <div class="hero-right">
-          <div class="hero-impact">
+          <div class="hcard-scene">
 
-            <div class="impact-item">
-              <span class="impact-who">Empresas</span>
-              <p class="impact-desc">Conectan con talento preparado para resolver retos reales de su sector.</p>
+            <!-- Chip flotante superior -->
+            <div class="hchip">
+              <span class="hchip-dot"></span>
+              Ecosistema educativo Dualab
             </div>
 
-            <div class="impact-divider"></div>
+            <!-- Card principal: tres perfiles -->
+            <div class="hcard-main">
 
-            <div class="impact-item">
-              <span class="impact-who">Centros educativos</span>
-              <p class="impact-desc">Agilizan la vinculación con empresas alineadas con cada perfil formativo.</p>
+              <div class="impact-item">
+                <span class="impact-who">Empresas</span>
+                <p class="impact-desc">Conectan con talento preparado para resolver retos reales de su sector.</p>
+              </div>
+
+              <div class="impact-divider"></div>
+
+              <div class="impact-item">
+                <span class="impact-who">Centros educativos</span>
+                <p class="impact-desc">Agilizan la vinculación con empresas alineadas con cada perfil formativo.</p>
+              </div>
+
+              <div class="impact-divider"></div>
+
+              <div class="impact-item">
+                <span class="impact-who">Alumnado</span>
+                <p class="impact-desc">Llega a sus prácticas habiendo trabajado proyectos reales dentro del aula.</p>
+              </div>
+
             </div>
 
-            <div class="impact-divider"></div>
-
-            <div class="impact-item">
-              <span class="impact-who">Alumnado</span>
-              <p class="impact-desc">Llega a sus prácticas habiendo trabajado proyectos reales dentro del aula.</p>
+            <!-- Acento flotante inferior -->
+            <div class="hfloat hfloat--accent">
+              <span class="hfloat-spark">✦</span>
+              <span class="hfloat-accent-text">Primera conexión antes de las prácticas</span>
             </div>
 
           </div>
@@ -191,32 +217,67 @@ onMounted(() => {
 
       </section>
 
-      <!-- TARJETAS -->
-      <div class="cards">
+      <!-- BLOQUES PREMIUM -->
+      <div class="features-header">
+        <span class="features-eyebrow">Para cada perfil</span>
+        <h2 class="features-title">Una plataforma,<br><em class="features-accent">tres experiencias</em></h2>
+      </div>
 
-        <div class="card card-student">
-          <span class="card-icon">🎓</span>
-          <p class="card-role">Estudiante</p>
-          <h3>Practica con casos reales</h3>
-          <p class="card-desc">Resuelve retos de empresa y construye tu portafolio antes de las prácticas.</p>
-          <button class="card-cta" @click="emit('formulario', 'estudiante')">Explorar retos →</button>
-        </div>
+      <div class="features-list">
 
-        <div class="card card-center">
-          <span class="card-icon">🏫</span>
-          <p class="card-role">Centro educativo</p>
-          <h3>Gestiona tu alumnado</h3>
-          <p class="card-desc">Asigna retos y haz seguimiento del progreso de cada grupo.</p>
-          <button class="card-cta" @click="emit('formulario', 'centro')">Solicitar demo →</button>
-        </div>
+        <FeatureSection
+          id="bloque-estudiantes"
+          badge="Estudiantes"
+          title="Construye tu <em>portafolio real</em> antes de las prácticas"
+          description="Resuelve retos reales de empresas desde el aula. Demuestra lo que sabes con proyectos que importan, no con exámenes."
+          :benefits="[
+            'Accede a retos publicados por empresas reales',
+            'Desarrolla proyectos aplicables a tu sector',
+            'Construye un portafolio antes de las prácticas',
+            'Recibe feedback directo de profesionales',
+          ]"
+          button-text="Ver demo"
+          image="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=900&h=700&fit=crop&q=85&auto=format"
+          image-alt="Alumnado trabajando en proyectos reales"
+          :reverse="false"
+          @cta="emit('formulario', 'estudiante')"
+        />
 
-        <div class="card card-company">
-          <span class="card-icon">🏢</span>
-          <p class="card-role">Empresa</p>
-          <h3>Publica tus retos</h3>
-          <p class="card-desc">Encuentra talento joven resolviendo tus desafíos reales.</p>
-          <button class="card-cta" @click="emit('formulario', 'empresa')">Empezar ahora →</button>
-        </div>
+        <FeatureSection
+          id="bloque-centros"
+          badge="Centros educativos"
+          title="Conecta tu aula con la <em>empresa real</em>"
+          description="Gestiona tu alumnado, asigna retos por perfil formativo y haz seguimiento del progreso de cada grupo desde un único panel."
+          :benefits="[
+            'Panel de gestión de alumnos y grupos',
+            'Asignación de retos por ciclo formativo',
+            'Seguimiento en tiempo real del progreso',
+            'Vinculación directa con empresas de tu sector',
+          ]"
+          button-text="Ver demo"
+          image="https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=900&h=700&fit=crop&q=85&auto=format"
+          image-alt="Centro educativo gestionando alumnado"
+          :reverse="true"
+          @cta="emit('formulario', 'centro')"
+        />
+
+        <FeatureSection
+          id="bloque-empresas"
+          badge="Empresas"
+          title="Publica tus retos y descubre <em>talento preparado</em>"
+          description="Accede a alumnado formado en tu sector y observa cómo resuelven tus desafíos reales. La primera conexión antes de las prácticas."
+          :benefits="[
+            'Publica retos adaptados a tu necesidad real',
+            'Filtra por perfil formativo y especialidad',
+            'Observa soluciones antes de contratar',
+            'Primera toma de contacto sin compromiso',
+          ]"
+          button-text="Ver demo"
+          image="https://images.unsplash.com/photo-1497366216548-37526070297c?w=900&h=700&fit=crop&q=85&auto=format"
+          image-alt="Empresa revisando soluciones de alumnado"
+          :reverse="false"
+          @cta="emit('formulario', 'empresa')"
+        />
 
       </div>
 
@@ -258,15 +319,33 @@ onMounted(() => {
   align-items: center;
 }
 
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.nav-link {
+  background: none;
+  border: none;
+  padding: 8px 14px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease;
+}
+
+.nav-link:hover {
+  background: rgba(89, 191, 56, 0.08);
+  color: #1F6935;
+}
+
 .nav-actions {
   display: flex;
   align-items: center;
   gap: 12px;
-}
-
-.nav-hint {
-  font-size: 13px;
-  color: #75947F;
 }
 
 .nav-btn {
@@ -385,66 +464,95 @@ onMounted(() => {
   box-shadow: 0 4px 14px rgba(0,0,0,0.06);
 }
 
-/* ─── HERO RIGHT IMPACT ─────────────────────────────────── */
+/* ─── HERO RIGHT — ECOSISTEMA ───────────────────────────── */
 .hero-right {
   align-self: center;
 }
 
-.hero-impact {
+.hcard-scene {
   position: relative;
-  background: rgba(9, 21, 18, 0.91);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  border: 1px solid rgba(89, 191, 56, 0.16);
-  border-radius: 22px;
-  padding: 8px 0;
-  overflow: hidden;
+  padding: 40px 16px 48px;
+}
+
+/* ── chip flotante superior ── */
+.hchip {
+  position: absolute;
+  top: 8px;
+  right: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: linear-gradient(135deg, #1F6935, #2d8a48);
+  border-radius: 999px;
+  padding: 8px 16px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #fff;
   box-shadow:
-    0 0 0 1px rgba(89, 191, 56, 0.06),
-    0 4px 16px rgba(0, 0, 0, 0.22),
-    0 22px 56px rgba(0, 0, 0, 0.30),
-    inset 0 1px 0 rgba(255, 255, 255, 0.04);
-  transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1),
-              box-shadow 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+    0 4px 14px rgba(31, 105, 53, 0.30),
+    0 2px 6px rgba(89, 191, 56, 0.20);
+  animation: floatA 4s ease-in-out infinite;
 }
 
-/* glow top-right */
-.hero-impact::before {
+.hchip-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #AEE565;
+  box-shadow: 0 0 7px rgba(174, 229, 101, 0.80);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* ── card principal ── */
+.hcard-main {
+  position: relative;
+  background: rgba(248, 253, 248, 0.75);
+  backdrop-filter: blur(28px) saturate(1.6);
+  -webkit-backdrop-filter: blur(28px) saturate(1.6);
+  border-radius: 28px;
+  padding: 8px 0;
+  /* borde gradiente via pseudo-element */
+  z-index: 0;
+  box-shadow:
+    0 8px 24px rgba(31, 105, 53, 0.10),
+    0 24px 56px rgba(0, 0, 0, 0.07),
+    0 48px 80px rgba(0, 0, 0, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  transition: transform 0.38s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.38s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.hcard-main::before {
   content: '';
   position: absolute;
-  top: -70px;
-  right: -70px;
-  width: 240px;
-  height: 240px;
-  background: radial-gradient(circle, rgba(89, 191, 56, 0.16) 0%, transparent 65%);
-  pointer-events: none;
+  inset: -1.5px;
+  border-radius: 29.5px;
+  background: linear-gradient(
+    145deg,
+    rgba(89, 191, 56, 0.55) 0%,
+    rgba(174, 229, 101, 0.35) 35%,
+    rgba(255, 255, 255, 0.15) 60%,
+    rgba(89, 191, 56, 0.30) 100%
+  );
+  z-index: -1;
 }
 
-/* glow bottom-left */
-.hero-impact::after {
-  content: '';
-  position: absolute;
-  bottom: -50px;
-  left: -50px;
-  width: 180px;
-  height: 180px;
-  background: radial-gradient(circle, rgba(31, 105, 53, 0.12) 0%, transparent 65%);
-  pointer-events: none;
-}
-
-.hero-impact:hover {
+.hcard-main:hover {
   transform: translateY(-4px);
   box-shadow:
-    0 0 0 1px rgba(89, 191, 56, 0.12),
-    0 10px 28px rgba(0, 0, 0, 0.28),
-    0 36px 72px rgba(0, 0, 0, 0.36),
-    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    0 12px 32px rgba(31, 105, 53, 0.14),
+    0 32px 64px rgba(0, 0, 0, 0.09),
+    0 56px 96px rgba(0, 0, 0, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.98);
 }
 
+/* ── items de perfil dentro del card ── */
 .impact-item {
   position: relative;
   z-index: 1;
-  padding: 26px 32px;
+  padding: 20px 26px;
+  border-radius: 18px;
+  margin: 4px 4px;
   transition: background 0.22s ease;
 }
 
@@ -460,33 +568,91 @@ onMounted(() => {
   font-weight: 700;
   letter-spacing: 0.11em;
   text-transform: uppercase;
-  color: #6ee840;
-  margin-bottom: 8px;
+  color: #1F6935;
+  margin-bottom: 7px;
 }
 
 .impact-who::before {
   content: '';
-  width: 5px;
-  height: 5px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
   background: #59BF38;
   flex-shrink: 0;
-  box-shadow: 0 0 7px rgba(89, 191, 56, 0.70);
+  box-shadow: 0 0 7px rgba(89, 191, 56, 0.55);
 }
 
 .impact-desc {
-  font-size: 14px;
-  color: rgba(255, 255, 255, 0.60);
-  line-height: 1.70;
+  font-size: 13.5px;
+  color: #4b5563;
+  line-height: 1.65;
   margin: 0;
 }
 
 .impact-divider {
-  position: relative;
-  z-index: 1;
   height: 1px;
   background: rgba(89, 191, 56, 0.09);
-  margin: 0 32px;
+  margin: 0 26px;
+}
+
+/* ── acento flotante inferior ── */
+.hfloat {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.80);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.90);
+  border-radius: 18px;
+  padding: 11px 16px;
+  box-shadow:
+    0 4px 14px rgba(0, 0, 0, 0.06),
+    0 12px 32px rgba(31, 105, 53, 0.07),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.hfloat--accent {
+  bottom: 4px;
+  right: -10px;
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(89, 191, 56, 0.22);
+  animation: floatB 4.2s ease-in-out infinite;
+  box-shadow:
+    0 4px 16px rgba(31, 105, 53, 0.12),
+    0 12px 32px rgba(0, 0, 0, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.98);
+}
+
+.hfloat-spark {
+  font-size: 15px;
+  color: #59BF38;
+  filter: drop-shadow(0 0 7px rgba(89, 191, 56, 0.65));
+  flex-shrink: 0;
+}
+
+.hfloat-accent-text {
+  font-size: 12px;
+  font-weight: 600;
+  color: #1F6935;
+  white-space: nowrap;
+}
+
+/* ── animaciones ── */
+@keyframes floatA {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-7px); }
+}
+
+@keyframes floatB {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-5px); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 6px rgba(89, 191, 56, 0.60); }
+  50%       { opacity: 0.7; box-shadow: 0 0 12px rgba(89, 191, 56, 0.90); }
 }
 
 /* ─── ECOSISTEMA ────────────────────────────────────────── */
@@ -711,7 +877,7 @@ onMounted(() => {
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(89, 191, 56, 0.13);
   border-radius: 20px;
-  padding: 22px 36px;
+  padding: 14px 36px;
   overflow: hidden;
   box-shadow:
     0 0 0 1px rgba(89, 191, 56, 0.06),
@@ -773,80 +939,44 @@ onMounted(() => {
   font-weight: 700;
 }
 
-/* ─── TARJETAS ──────────────────────────────────────────── */
-.cards {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-  margin-top: 52px;
+/* ─── BLOQUES PREMIUM ───────────────────────────────────── */
+.features-header {
+  text-align: center;
+  padding: 72px 0 16px;
 }
 
-.card {
-  background: #ffffff;
-  border: 1px solid #C6D8C6;
-  border-top: 3px solid;
-  border-radius: 18px;
-  padding: 36px 32px;
-  text-align: left;
-  cursor: pointer;
-  transition: transform 0.22s ease, box-shadow 0.22s ease;
-}
-
-.card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 48px rgba(31,105,53,0.13);
-}
-
-.card-student { border-top-color: #59BF38; --accent: #59BF38; }
-.card-center  { border-top-color: #1F6935; --accent: #1F6935; }
-.card-company { border-top-color: #75947F; --accent: #75947F; }
-
-.card-icon {
-  font-size: 32px;
-  display: block;
-  margin-bottom: 18px;
-}
-
-.card-role {
+.features-eyebrow {
+  display: inline-block;
   font-size: 11px;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.13em;
   text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 8px;
+  color: #59BF38;
+  margin-bottom: 12px;
 }
 
-.card h3 {
-  font-size: 18px;
-  font-weight: 700;
-  color: #1F6935;
-  margin-bottom: 10px;
-  letter-spacing: -0.01em;
+.features-title {
+  font-size: clamp(28px, 3.5vw, 46px);
+  font-weight: 900;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  color: #111827;
+  font-style: normal;
 }
 
-.card-desc {
-  font-size: 14px;
-  color: #75947F;
-  line-height: 1.6;
-  margin-bottom: 24px;
+.features-accent {
+  font-style: normal;
+  background: linear-gradient(to right, #22c55e, #59BF38);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-.card-cta {
-  background: none;
-  border: none;
-  padding: 0;
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--accent);
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  transition: gap 0.15s ease;
-}
-
-.card-cta:hover {
-  gap: 10px;
+.features-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 40px;
 }
 
 /* ─── FEEDBACK EMPRESA ──────────────────────────────────── */
