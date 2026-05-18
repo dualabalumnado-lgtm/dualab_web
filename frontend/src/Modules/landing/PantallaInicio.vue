@@ -41,7 +41,7 @@ onMounted(() => {
           <button class="nav-link" @click="scrollTo('bloque-empresas')">Empresas</button>
         </div>
         <div class="nav-actions">
-          <button class="nav-btn" @click="emit('login')">Iniciar sesión</button>
+          <button class="nav-btn" @click="emit('formulario', 'estudiante')">Quiero participar</button>
         </div>
       </nav>
 
@@ -68,10 +68,19 @@ onMounted(() => {
         <div class="hero-right">
           <div class="hcard-scene">
 
-            <!-- Chip flotante superior -->
-            <div class="hchip">
+            <!-- Badge flotante top-right -->
+            <div class="hchip hchip--tr">
               <span class="hchip-dot"></span>
-              Ecosistema educativo Dualab
+              Retos reales
+            </div>
+
+            <!-- Badge flotante top-left -->
+            <div class="hbadge hbadge--tl">
+              <svg width="11" height="11" viewBox="0 0 12 12" fill="none">
+                <path d="M2 6.5L4.8 9.5L10 3" stroke="#1F6935" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Microreto validado
             </div>
 
             <!-- Card principal: tres perfiles -->
@@ -98,10 +107,16 @@ onMounted(() => {
 
             </div>
 
-            <!-- Acento flotante inferior -->
+            <!-- Badge flotante bottom-left -->
+            <div class="hbadge hbadge--bl">
+              <span class="hbadge-dot"></span>
+              Portfolio práctico
+            </div>
+
+            <!-- Acento flotante bottom-right -->
             <div class="hfloat hfloat--accent">
               <span class="hfloat-spark">✦</span>
-              <span class="hfloat-accent-text">Primera conexión antes de las prácticas</span>
+              <span class="hfloat-accent-text">Aprendizaje conectado</span>
             </div>
 
           </div>
@@ -288,15 +303,15 @@ onMounted(() => {
 <style scoped>
 
 .logo-img {
-  height: 70px;
+  height: 52px;
   width: auto;
-  opacity: 0.92;
+  opacity: 0.95;
 }
 
 /* ─── LAYOUT ───────────────────────────────────────────── */
 .container {
   min-height: 100vh;
-  padding: 20px 48px 80px;
+  padding: 16px 32px 80px;
   font-family: sans-serif;
   background: linear-gradient(135deg, #f0f5ea 0%, #ffffff 40%, #f5f8fb 100%);
 }
@@ -308,10 +323,24 @@ onMounted(() => {
 
 /* ─── NAV ───────────────────────────────────────────────── */
 .nav {
+  position: sticky;
+  top: 12px;
+  z-index: 100;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 48px;
+  background: rgba(255, 255, 255, 0.76);
+  backdrop-filter: blur(22px) saturate(1.5);
+  -webkit-backdrop-filter: blur(22px) saturate(1.5);
+  border: 1px solid rgba(255, 255, 255, 0.86);
+  border-bottom: 1px solid rgba(89, 191, 56, 0.10);
+  border-radius: 18px;
+  padding: 10px 18px;
+  margin-bottom: 36px;
+  box-shadow:
+    0 1px 0 rgba(89, 191, 56, 0.08),
+    0 4px 16px rgba(0, 0, 0, 0.06),
+    0 12px 36px rgba(0, 0, 0, 0.04);
 }
 
 .nav-logo {
@@ -322,49 +351,68 @@ onMounted(() => {
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 2px;
 }
 
 .nav-link {
+  position: relative;
   background: none;
   border: none;
-  padding: 8px 14px;
-  font-size: 14px;
+  padding: 8px 13px;
+  font-size: 13.5px;
   font-weight: 500;
-  color: #374151;
+  color: #4b5563;
   border-radius: 10px;
   cursor: pointer;
-  transition: background 0.18s ease, color 0.18s ease;
+  transition: color 0.18s ease, background 0.18s ease;
+  letter-spacing: -0.01em;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 4px;
+  left: 13px;
+  right: 13px;
+  height: 1.5px;
+  background: #59BF38;
+  border-radius: 999px;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .nav-link:hover {
-  background: rgba(89, 191, 56, 0.08);
   color: #1F6935;
+  background: rgba(89, 191, 56, 0.06);
+}
+
+.nav-link:hover::after {
+  transform: scaleX(1);
 }
 
 .nav-actions {
   display: flex;
   align-items: center;
-  gap: 12px;
 }
 
 .nav-btn {
-  background: rgba(255,255,255,0.55);
-  color: #1F6935;
-  border: 1px solid rgba(31,105,53,0.15);
-  border-radius: 10px;
-  padding: 10px 20px;
-  font-size: 14px;
-  font-weight: 600;
+  background: linear-gradient(135deg, #22c55e, #59BF38);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  padding: 9px 20px;
+  font-size: 13.5px;
+  font-weight: 700;
   cursor: pointer;
-  backdrop-filter: blur(8px);
-  transition: all 0.2s ease;
+  letter-spacing: -0.01em;
+  box-shadow: 0 3px 12px rgba(89, 191, 56, 0.30);
+  transition: transform 0.20s ease, box-shadow 0.20s ease;
 }
 
 .nav-btn:hover {
-  background: white;
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(31,105,53,0.08);
+  box-shadow: 0 6px 20px rgba(89, 191, 56, 0.40);
 }
 
 /* ─── HERO 2 COLS ───────────────────────────────────────── */
@@ -373,7 +421,7 @@ onMounted(() => {
   grid-template-columns: 7fr 5fr;
   gap: 56px;
   align-items: center;
-  padding: 32px 0 88px;
+  padding: 8px 0 64px;
 }
 
 .hero-left {
@@ -471,26 +519,30 @@ onMounted(() => {
 
 .hcard-scene {
   position: relative;
-  padding: 40px 16px 48px;
+  padding: 44px 20px 52px 20px;
 }
 
-/* ── chip flotante superior ── */
+/* ── chips y badges flotantes ── */
 .hchip {
   position: absolute;
-  top: 8px;
-  right: 0;
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  background: linear-gradient(135deg, #1F6935, #2d8a48);
+  background: linear-gradient(135deg, #1F6935, #2a7d40);
   border-radius: 999px;
-  padding: 8px 16px;
+  padding: 7px 15px;
   font-size: 12px;
   font-weight: 600;
   color: #fff;
+  white-space: nowrap;
   box-shadow:
-    0 4px 14px rgba(31, 105, 53, 0.30),
-    0 2px 6px rgba(89, 191, 56, 0.20);
+    0 4px 14px rgba(31, 105, 53, 0.28),
+    0 2px 6px rgba(89, 191, 56, 0.18);
+}
+
+.hchip--tr {
+  top: 6px;
+  right: 0;
   animation: floatA 4s ease-in-out infinite;
 }
 
@@ -501,6 +553,49 @@ onMounted(() => {
   background: #AEE565;
   box-shadow: 0 0 7px rgba(174, 229, 101, 0.80);
   animation: pulse 2s ease-in-out infinite;
+}
+
+/* mini badges secundarios */
+.hbadge {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(89, 191, 56, 0.20);
+  border-radius: 999px;
+  padding: 6px 13px;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #1F6935;
+  white-space: nowrap;
+  box-shadow:
+    0 2px 8px rgba(31, 105, 53, 0.10),
+    0 8px 20px rgba(0, 0, 0, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95);
+}
+
+.hbadge--tl {
+  top: 10px;
+  left: -8px;
+  animation: floatB 3.8s ease-in-out infinite;
+}
+
+.hbadge--bl {
+  bottom: 8px;
+  left: -4px;
+  animation: floatB 4.6s ease-in-out 0.4s infinite;
+}
+
+.hbadge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #59BF38;
+  box-shadow: 0 0 6px rgba(89, 191, 56, 0.55);
+  animation: pulse 2.4s ease-in-out infinite;
 }
 
 /* ── card principal ── */
