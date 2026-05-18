@@ -130,6 +130,40 @@ onMounted(() => {
         </div>
       </div>
 
+      <!-- FEEDBACK EMPRESA -->
+      <div class="feedback-section">
+        <div class="feedback-flow">
+          <div class="feedback-step">
+            <span class="feedback-step-icon">🎓</span>
+            <span class="feedback-step-label">Alumno resuelve el reto</span>
+          </div>
+          <div class="feedback-arrow">→</div>
+          <div class="feedback-step">
+            <span class="feedback-step-icon">📬</span>
+            <span class="feedback-step-label">Empresa recibe la solución</span>
+          </div>
+          <div class="feedback-arrow">→</div>
+          <div class="feedback-step feedback-step--highlight">
+            <span class="feedback-step-icon">💬</span>
+            <span class="feedback-step-label">Feedback real + conexión</span>
+          </div>
+        </div>
+
+        <div class="feedback-quote">
+          <div class="feedback-quote-bar"></div>
+          <div class="feedback-quote-body">
+            <p class="feedback-quote-text">
+              "Recibimos propuestas de alumnos que entendieron exactamente lo que necesitábamos.
+              Dos de ellos están ahora haciendo prácticas con nosotros."
+            </p>
+            <div class="feedback-quote-author">
+              <span class="feedback-author-name">Marta Soler</span>
+              <span class="feedback-author-role">CEO · Empresa de software, Sevilla</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- RESULTADOS -->
       <section ref="resultsRef" class="results" :class="{ 'results--visible': resultsVisible }">
 
@@ -478,7 +512,7 @@ onMounted(() => {
 
 .flow-photo {
   position: relative;
-  height: 380px;
+  height: 260px;
   border-radius: 22px;
   overflow: hidden;
   cursor: pointer;
@@ -813,6 +847,101 @@ onMounted(() => {
 
 .card-cta:hover {
   gap: 10px;
+}
+
+/* ─── FEEDBACK EMPRESA ──────────────────────────────────── */
+.feedback-section {
+  margin: 0 0 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.feedback-flow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(89, 191, 56, 0.05);
+  border: 1px solid rgba(89, 191, 56, 0.14);
+  border-radius: 16px;
+  padding: 16px 24px;
+}
+
+.feedback-step {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+}
+
+.feedback-step-icon {
+  font-size: 18px;
+  line-height: 1;
+}
+
+.feedback-step-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.feedback-step--highlight .feedback-step-label {
+  color: #1F6935;
+}
+
+.feedback-arrow {
+  font-size: 16px;
+  color: #59BF38;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.feedback-quote {
+  display: flex;
+  gap: 0;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.feedback-quote-bar {
+  width: 4px;
+  background: linear-gradient(to bottom, #59BF38, #22c55e);
+  flex-shrink: 0;
+}
+
+.feedback-quote-body {
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.feedback-quote-text {
+  font-size: 14px;
+  color: #374151;
+  line-height: 1.7;
+  margin: 0;
+  font-style: italic;
+}
+
+.feedback-quote-author {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.feedback-author-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: #1F6935;
+}
+
+.feedback-author-role {
+  font-size: 12px;
+  color: #9ca3af;
 }
 
 /* ─── ANIMACIONES ───────────────────────────────────────── */
