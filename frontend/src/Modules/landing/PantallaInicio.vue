@@ -1,9 +1,10 @@
 <script setup>
 import { ref, onMounted } from 'vue'
-import logo from '@/assets/Dualab_logo_sin_fondo_2.png'
+import { useRouter } from 'vue-router'
 import FeatureSection from '@/components/FeatureSection.vue'
 
 const emit = defineEmits(['login', 'formulario'])
+const router = useRouter()
 
 const resultsRef = ref(null)
 const resultsVisible = ref(false)
@@ -30,20 +31,6 @@ onMounted(() => {
   <div class="container">
     <div class="content">
 
-      <!-- NAV -->
-      <nav class="nav">
-        <div class="nav-logo">
-          <img :src="logo" alt="Dualab logo" class="logo-img" />
-        </div>
-        <div class="nav-links">
-          <button class="nav-link" @click="scrollTo('bloque-estudiantes')">Estudiantes</button>
-          <button class="nav-link" @click="scrollTo('bloque-centros')">Centros educativos</button>
-          <button class="nav-link" @click="scrollTo('bloque-empresas')">Empresas</button>
-        </div>
-        <div class="nav-actions">
-          <button class="nav-btn" @click="emit('formulario', 'estudiante')">Quiero participar</button>
-        </div>
-      </nav>
 
       <!-- HERO 2 COLS -->
       <div class="hero">
@@ -60,7 +47,7 @@ onMounted(() => {
             La primera conexión antes de las prácticas.
           </p>
           <div class="hero-actions">
-            <button class="hero-cta-ghost" @click="emit('formulario', 'estudiante')">Explorar retos</button>
+            <button class="hero-cta-ghost" @click="router.push('/familias')">Explorar retos</button>
           </div>
         </div>
 
@@ -255,7 +242,7 @@ onMounted(() => {
           image="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=900&h=700&fit=crop&q=85&auto=format"
           image-alt="Alumnado trabajando en proyectos reales"
           :reverse="false"
-          @cta="emit('formulario', 'estudiante')"
+          @cta="router.push('/familias')"
         />
 
         <FeatureSection
@@ -273,7 +260,7 @@ onMounted(() => {
           image="https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=900&h=700&fit=crop&q=85&auto=format"
           image-alt="Centro educativo gestionando alumnado"
           :reverse="true"
-          @cta="emit('formulario', 'centro')"
+          @cta="router.push('/familias')"
         />
 
         <FeatureSection
@@ -291,7 +278,7 @@ onMounted(() => {
           image="https://images.unsplash.com/photo-1497366216548-37526070297c?w=900&h=700&fit=crop&q=85&auto=format"
           image-alt="Empresa revisando soluciones de alumnado"
           :reverse="false"
-          @cta="emit('formulario', 'empresa')"
+          @cta="router.push('/familias')"
         />
 
       </div>
@@ -311,7 +298,7 @@ onMounted(() => {
 /* ─── LAYOUT ───────────────────────────────────────────── */
 .container {
   min-height: 100vh;
-  padding: 16px 32px 80px;
+  padding: 32px 32px 80px;
   font-family: sans-serif;
   background: linear-gradient(135deg, #f0f5ea 0%, #ffffff 40%, #f5f8fb 100%);
 }

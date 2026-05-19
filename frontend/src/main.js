@@ -12,7 +12,7 @@ import SectorView from './views/SectorView.vue'
 const router = createRouter({
   history: createWebHistory(),
   routes: [
-    { path: '/',                component: FamiliasView        },
+    { path: '/familias',        component: FamiliasView        },
     { path: '/sector/:nombre',  component: SectorView          },
     { path: '/familia/:id',     component: FamiliaDetailView   },
     { path: '/reto/:id',        component: MicroretoDetailView },

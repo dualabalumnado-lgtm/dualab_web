@@ -7,6 +7,8 @@ const props = defineProps({
   rol: String
 })
 
+const emit = defineEmits(['irFamilias'])
+
 const leads = ref([])
 
 onMounted(async () => {
@@ -39,18 +41,36 @@ onMounted(async () => {
         Crea y gestiona retos de forma simple
       </p>
 
-      <button style="
-        background: linear-gradient(160deg, #59BF38, #AEE565);
-        color: black;
-        padding: 14px 20px;
-        border-radius: 12px;
-        font-weight: bold;
-        margin-bottom: 30px;
-        font-size: 16px;
-        border: none;
-      ">
-        🚀 Crear reto
-      </button>
+      <div style="display: flex; gap: 12px; margin-bottom: 30px; flex-wrap: wrap;">
+        <button style="
+          background: linear-gradient(160deg, #59BF38, #AEE565);
+          color: black;
+          padding: 14px 20px;
+          border-radius: 12px;
+          font-weight: bold;
+          font-size: 16px;
+          border: none;
+          cursor: pointer;
+        ">
+          🚀 Crear reto
+        </button>
+
+        <button
+          @click="emit('irFamilias')"
+          style="
+            background: transparent;
+            color: #AEE565;
+            padding: 14px 20px;
+            border-radius: 12px;
+            font-weight: bold;
+            font-size: 16px;
+            border: 1.5px solid #AEE565;
+            cursor: pointer;
+          "
+        >
+          🎓 Explorar familias profesionales →
+        </button>
+      </div>
 
       <!-- MÉTRICAS -->
       <div style="display: flex; gap: 20px; margin-bottom: 40px;">
@@ -83,9 +103,24 @@ onMounted(async () => {
       <!-- ESTADO VACÍO -->
       <div v-if="leads.length === 0" style="text-align: center; margin-top: 40px;">
         <p style="font-size: 18px;">No hay retos aún 👀</p>
-        <p style="color: #C6D8C6;">
+        <p style="color: #C6D8C6; margin-bottom: 20px;">
           Empieza creando tu primer reto y prueba la experiencia
         </p>
+        <button
+          @click="emit('irFamilias')"
+          style="
+            background: linear-gradient(160deg, #1F6935, #59BF38);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-weight: bold;
+            font-size: 15px;
+            border: none;
+            cursor: pointer;
+          "
+        >
+          Ver familias profesionales →
+        </button>
       </div>
 
     </div>

@@ -1,70 +1,80 @@
 <script setup>
 import { ref } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 import Dashboard from './components/Dashboard.vue'
 import PantallaInicio from './Modules/landing/PantallaInicio.vue'
+import AppNavbar from './components/AppNavbar.vue'
+
+const route  = useRoute()
+const router = useRouter()
 
 const pantalla = ref('inicio')
 const rol = ref(null)
 
-// cuando clicas en una card
 const irFormulario = (r) => {
   rol.value = r
   pantalla.value = 'formulario'
 }
 
-// botón login
 const irLogin = () => {
   pantalla.value = 'login'
 }
 
-// cuando termine login
 const irDashboard = () => {
   pantalla.value = 'dashboard'
 }
 
-//  después de formulario → pantalla gracias
 const irGracias = () => {
   pantalla.value = 'gracias'
+}
+
+const irFamilias = () => {
+  router.push('/familias')
 }
 </script>
 
 <template>
-  <PantallaInicio 
-    v-if="pantalla === 'inicio'" 
-    @login="irLogin"
-    @formulario="irFormulario"
-  />
+  <AppNavbar />
 
-  <!-- LOGIN -->
-  <Login 
-    v-else-if="pantalla === 'login'"
-    @loginSuccess="irDashboard"
-  />
+  <!-- Rutas del router (familias, sector, microretos…) -->
+  <router-view v-if="route.path !== '/'" />
 
-  <!-- FORMULARIOS -->
-  <FormEstudiante 
-    v-else-if="pantalla === 'formulario' && rol === 'estudiante'"
-    @formSuccess="irGracias"
-  />
+  <!-- Máquina de estados de la landing (solo en '/') -->
+  <template v-else>
+    <PantallaInicio
+      v-if="pantalla === 'inicio'"
+      @login="irLogin"
+      @formulario="irFormulario"
+    />
 
-  <FormCentro 
-    v-else-if="pantalla === 'formulario' && rol === 'centro'"
-    @formSuccess="irGracias"
-  />
+    <Login
+      v-else-if="pantalla === 'login'"
+      @loginSuccess="irDashboard"
+    />
 
-  <FormEmpresa 
-    v-else-if="pantalla === 'formulario' && rol === 'empresa'"
-    @formSuccess="irGracias"
-  />
+    <FormEstudiante
+      v-else-if="pantalla === 'formulario' && rol === 'estudiante'"
+      @formSuccess="irGracias"
+    />
 
-  <!-- GRACIAS -->
-  <div v-else-if="pantalla === 'gracias'">
-    <h2>Gracias 🙌</h2>
-  </div>
+    <FormCentro
+      v-else-if="pantalla === 'formulario' && rol === 'centro'"
+      @formSuccess="irGracias"
+    />
 
-  <!-- DASHBOARD -->
-  <Dashboard 
-    v-else 
-    :rol="rol"
-  />
+    <FormEmpresa
+      v-else-if="pantalla === 'formulario' && rol === 'empresa'"
+      @formSuccess="irGracias"
+    />
+
+    <div v-else-if="pantalla === 'gracias'">
+      <h2>Gracias 🙌</h2>
+    </div>
+
+    <Dashboard
+      v-else
+      :rol="rol"
+      @irFamilias="irFamilias"
+    />
+  </template>
 </template>
