@@ -79,11 +79,11 @@ onMounted(() => {
 
 <style scoped>
 .fs-section {
-  padding: 80px 48px;
+  padding: 52px 40px;
   opacity: 0;
-  transform: translateY(36px);
-  transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
-              transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+  transform: translateY(24px);
+  transition: opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .fs-section--visible {
@@ -93,16 +93,16 @@ onMounted(() => {
 
 /* Fondo alterno suave */
 .fs-section:nth-child(even) {
-  background: rgba(240, 245, 234, 0.55);
-  border-radius: 32px;
+  background: rgba(240, 245, 234, 0.45);
+  border-radius: 24px;
 }
 
 .fs-inner {
-  max-width: 1200px;
+  max-width: 1160px;
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 72px;
+  gap: 56px;
   align-items: center;
 }
 
@@ -264,7 +264,7 @@ onMounted(() => {
 /* ─── RESPONSIVE ─────────────────────────────────────────── */
 @media (max-width: 840px) {
   .fs-section {
-    padding: 56px 24px;
+    padding: 36px 20px;
   }
 
   .fs-inner {

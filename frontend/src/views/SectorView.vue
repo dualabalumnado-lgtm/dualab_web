@@ -51,7 +51,7 @@ const go = (id) => router.push(`/familia/${id}`)
       <div class="max-w-2xl mx-auto text-center">
 
         <button
-          @click="router.push('/')"
+          @click="router.push('/familias')"
           class="mb-6 text-sm text-gray-500 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400 flex items-center gap-1.5 mx-auto transition-colors"
         >
           ← Todos los sectores
