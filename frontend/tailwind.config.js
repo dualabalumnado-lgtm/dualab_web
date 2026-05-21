@@ -1,21 +1,23 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  // 👇 AQUÍ ESTÁ LA CLAVE QUE FALTABA 👇
-  content: [
-    "./index.html",
-    "./src/**/*.{vue,js,ts,jsx,tsx}",
-  ],
+  darkMode: 'class',
+  content: ['./index.html', './src/**/*.{vue,js,ts}'],
   theme: {
     extend: {
       colors: {
         brand: {
-          dark: "#1F6935",
-          primary: "#59BF38",
-          light: "#AEE565",
-          glass: "#C6D8C6"
+          primary:   "var(--color-primary)",
+          secondary: "var(--color-secondary)",
+          accent:    "var(--color-accent)",
+          neutral:   "var(--color-neutral)",
+          /* alias legacy */
+          dark:      "var(--color-secondary)",
+          light:     "var(--color-accent)",
+          glass:     "var(--color-neutral)",
         }
       }
-    },
+    }
   },
   plugins: [],
 }
+
