@@ -1,5 +1,7 @@
 @import "./theme.css";
 
+@tailwind base;
+@tailwind components;
 @tailwind utilities;
 
 /* -----------------------------------------------
@@ -87,24 +89,6 @@ h3, h4 {
   background-clip: text !important;
 }
 
-/* -----------------------------------------------
-   Inputs
------------------------------------------------ */
-input, select, textarea {
-  background-color: #1F2937 !important;
-  color: #FFFFFF !important;
-  border: 2px solid transparent !important;
-}
-
-input::placeholder, textarea::placeholder {
-  color: #6B7280 !important;
-}
-
-input:focus, select:focus, textarea:focus {
-  border-color: #00A859 !important;
-  outline: none !important;
-  box-shadow: 0 0 0 4px rgba(0, 168, 89, 0.2) !important;
-}
 
 /* -----------------------------------------------
    Scrollbar

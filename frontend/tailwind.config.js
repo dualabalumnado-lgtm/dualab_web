@@ -6,14 +6,10 @@ export default {
     extend: {
       colors: {
         brand: {
-          primary:   "var(--color-primary)",
-          secondary: "var(--color-secondary)",
-          accent:    "var(--color-accent)",
-          neutral:   "var(--color-neutral)",
-          /* alias legacy */
-          dark:      "var(--color-secondary)",
-          light:     "var(--color-accent)",
-          glass:     "var(--color-neutral)",
+          dark:    "#1F6935",
+          primary: "#59BF38",
+          light:   "#AEE565",
+          glass:   "#C6D8C6",
         }
       }
     }
