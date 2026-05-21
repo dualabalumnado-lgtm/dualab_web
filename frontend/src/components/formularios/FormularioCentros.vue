@@ -76,7 +76,7 @@
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div class="sm:col-span-2">
-            <label class="block text-xs font-semibold text-gray-600 uppercase tracking-wide mb-1.5">
+            <label class="block text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wide mb-1.5">
               Nombre del centro <span class="text-brand-primary normal-case tracking-normal">*</span>
             </label>
             <input
@@ -84,12 +84,12 @@
               type="text"
               required
               placeholder="Ej: IES Tecnológico de Madrid"
-              class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-400 text-sm focus:outline-none focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary transition-all"
+              class="w-full px-4 py-3 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 text-sm focus:outline-none focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary transition-all"
             />
           </div>
 
           <div>
-            <label class="block text-xs font-semibold text-gray-600 uppercase tracking-wide mb-1.5">
+            <label class="block text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wide mb-1.5">
               Persona de contacto <span class="text-brand-primary normal-case tracking-normal">*</span>
             </label>
             <input
@@ -97,22 +97,22 @@
               type="text"
               required
               placeholder="Nombre y apellidos"
-              class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-400 text-sm focus:outline-none focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary transition-all"
+              class="w-full px-4 py-3 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 text-sm focus:outline-none focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary transition-all"
             />
           </div>
 
           <div>
-            <label class="block text-xs font-semibold text-gray-600 uppercase tracking-wide mb-1.5">Cargo</label>
+            <label class="block text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wide mb-1.5">Cargo</label>
             <input
               v-model="form.cargo"
               type="text"
               placeholder="Ej: Jefe de estudios, Coordinador FCT…"
-              class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-400 text-sm focus:outline-none focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary transition-all"
+              class="w-full px-4 py-3 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 text-sm focus:outline-none focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary transition-all"
             />
           </div>
 
           <div>
-            <label class="block text-xs font-semibold text-gray-600 uppercase tracking-wide mb-1.5">
+            <label class="block text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wide mb-1.5">
               Email <span class="text-brand-primary normal-case tracking-normal">*</span>
             </label>
             <input
@@ -120,32 +120,32 @@
               type="email"
               required
               placeholder="centro@educacion.es"
-              class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-400 text-sm focus:outline-none focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary transition-all"
+              class="w-full px-4 py-3 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 text-sm focus:outline-none focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary transition-all"
             />
           </div>
 
           <div>
-            <label class="block text-xs font-semibold text-gray-600 uppercase tracking-wide mb-1.5">Teléfono</label>
+            <label class="block text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wide mb-1.5">Teléfono</label>
             <input
               v-model="form.telefono"
               type="tel"
               placeholder="+34 900 000 000"
-              class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-400 text-sm focus:outline-none focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary transition-all"
+              class="w-full px-4 py-3 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 text-sm focus:outline-none focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary transition-all"
             />
           </div>
 
           <div class="sm:col-span-2">
-            <label class="block text-xs font-semibold text-gray-600 uppercase tracking-wide mb-1.5">Ciclos formativos</label>
+            <label class="block text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wide mb-1.5">Ciclos formativos</label>
             <input
               v-model="form.ciclos"
               type="text"
               placeholder="Ej: DAM, DAW, ASIR, SMR…"
-              class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-400 text-sm focus:outline-none focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary transition-all"
+              class="w-full px-4 py-3 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 text-sm focus:outline-none focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary transition-all"
             />
           </div>
 
           <div class="sm:col-span-2">
-            <label class="block text-xs font-semibold text-gray-600 uppercase tracking-wide mb-1.5">
+            <label class="block text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wide mb-1.5">
               Número aproximado de alumnos
             </label>
             <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
@@ -158,7 +158,7 @@
                   'px-3 py-2.5 rounded-xl text-xs font-medium border transition-all text-center',
                   form.num_alumnos === rango.value
                     ? 'bg-brand-primary border-brand-primary text-white shadow-sm shadow-brand-primary/30'
-                    : 'bg-white border-gray-200 text-gray-600 hover:border-brand-primary/50 hover:text-brand-dark hover:bg-green-50/50'
+                    : 'bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 hover:border-brand-primary/50 hover:text-brand-dark hover:bg-green-50/50'
                 ]"
               >
                 {{ rango.label }}

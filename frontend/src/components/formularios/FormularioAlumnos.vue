@@ -76,7 +76,7 @@
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label class="block text-xs font-semibold text-gray-600 uppercase tracking-wide mb-1.5">
+            <label class="block text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wide mb-1.5">
               Nombre y apellidos <span class="text-brand-primary normal-case tracking-normal">*</span>
             </label>
             <input
@@ -84,12 +84,12 @@
               type="text"
               required
               placeholder="Tu nombre completo"
-              class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-400 text-sm focus:outline-none focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary transition-all"
+              class="w-full px-4 py-3 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 text-sm focus:outline-none focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary transition-all"
             />
           </div>
 
           <div>
-            <label class="block text-xs font-semibold text-gray-600 uppercase tracking-wide mb-1.5">
+            <label class="block text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wide mb-1.5">
               Email <span class="text-brand-primary normal-case tracking-normal">*</span>
             </label>
             <input
@@ -97,42 +97,42 @@
               type="email"
               required
               placeholder="tu@email.com"
-              class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-400 text-sm focus:outline-none focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary transition-all"
+              class="w-full px-4 py-3 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 text-sm focus:outline-none focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary transition-all"
             />
           </div>
 
           <div>
-            <label class="block text-xs font-semibold text-gray-600 uppercase tracking-wide mb-1.5">Teléfono</label>
+            <label class="block text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wide mb-1.5">Teléfono</label>
             <input
               v-model="form.telefono"
               type="tel"
               placeholder="+34 600 000 000"
-              class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-400 text-sm focus:outline-none focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary transition-all"
+              class="w-full px-4 py-3 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 text-sm focus:outline-none focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary transition-all"
             />
           </div>
 
           <div>
-            <label class="block text-xs font-semibold text-gray-600 uppercase tracking-wide mb-1.5">Centro educativo</label>
+            <label class="block text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wide mb-1.5">Centro educativo</label>
             <input
               v-model="form.centro"
               type="text"
               placeholder="Nombre de tu instituto o FP"
-              class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-400 text-sm focus:outline-none focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary transition-all"
+              class="w-full px-4 py-3 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 text-sm focus:outline-none focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary transition-all"
             />
           </div>
 
           <div>
-            <label class="block text-xs font-semibold text-gray-600 uppercase tracking-wide mb-1.5">Ciclo formativo</label>
+            <label class="block text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wide mb-1.5">Ciclo formativo</label>
             <input
               v-model="form.ciclo"
               type="text"
               placeholder="Ej: DAM, DAW, ASIR, SMR…"
-              class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-400 text-sm focus:outline-none focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary transition-all"
+              class="w-full px-4 py-3 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 text-sm focus:outline-none focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary transition-all"
             />
           </div>
 
           <div>
-            <label class="block text-xs font-semibold text-gray-600 uppercase tracking-wide mb-1.5">Curso actual</label>
+            <label class="block text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wide mb-1.5">Curso actual</label>
             <div class="flex gap-2">
               <button
                 v-for="curso in cursos"
@@ -143,7 +143,7 @@
                   'flex-1 py-3 rounded-xl text-sm font-medium border transition-all text-center',
                   form.curso === curso.value
                     ? 'bg-brand-primary border-brand-primary text-white shadow-sm shadow-brand-primary/30'
-                    : 'bg-white border-gray-200 text-gray-600 hover:border-brand-primary/50 hover:text-brand-dark hover:bg-green-50/50'
+                    : 'bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 hover:border-brand-primary/50 hover:text-brand-dark hover:bg-green-50/50'
                 ]"
               >
                 {{ curso.label }}

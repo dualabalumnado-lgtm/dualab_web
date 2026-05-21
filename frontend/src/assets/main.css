@@ -70,17 +70,13 @@
    Tema Global
 ----------------------------------------------- */
 body {
-  background-color: #F8FAFC !important;
-  color: #4B5563 !important;
+  background-color: var(--bg-page);
+  color: var(--text-base);
+  transition: background-color 0.25s ease, color 0.25s ease;
 }
 
-h1, h2 {
-  color: #121212;
-}
-
-h3, h4 {
-  color: #1F2937;
-}
+h1, h2 { color: var(--text-heading); }
+h3, h4 { color: var(--text-heading); }
 
 .gradient-text {
   color: transparent !important;
@@ -88,20 +84,10 @@ h3, h4 {
   background-clip: text !important;
 }
 
-
 /* -----------------------------------------------
    Scrollbar
 ----------------------------------------------- */
-::-webkit-scrollbar {
-  width: 8px;
-}
-::-webkit-scrollbar-track {
-  background: #F8FAFC;
-}
-::-webkit-scrollbar-thumb {
-  background: #E2E8F0;
-  border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #00A859;
-}
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--bg-page); }
+::-webkit-scrollbar-thumb { background: var(--border-input); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-primary); }

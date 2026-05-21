@@ -11,7 +11,7 @@
       enter-from-class="opacity-0 translate-y-5 scale-[0.97]"
       enter-to-class="opacity-100 translate-y-0 scale-100"
     >
-      <div class="relative z-10 w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-white rounded-2xl shadow-2xl scrollbar-thin">
+      <div class="relative z-10 w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-white dark:bg-gray-900 dark:border dark:border-white/10 rounded-2xl shadow-2xl scrollbar-thin">
         <slot />
       </div>
     </Transition>
