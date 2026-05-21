@@ -284,6 +284,32 @@ onMounted(() => {
 
       </div>
 
+      <!-- CTA FINAL -->
+      <div class="landing-cta">
+        <div class="landing-cta-glow"></div>
+        <div class="landing-cta-inner">
+          <span class="landing-cta-eyebrow">¿Todo listo?</span>
+          <h2 class="landing-cta-title">
+            Forma parte de <em class="landing-cta-accent">Dualab</em>
+          </h2>
+          <p class="landing-cta-sub">
+            Cuéntanos quién eres y cómo podemos trabajar juntos.
+          </p>
+          <div class="landing-cta-actions">
+            <button class="landing-cta-btn-primary" @click="router.push('/participar')">
+              Quiero participar
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M2.5 7h9M8 3.5L11.5 7 8 10.5" stroke="currentColor" stroke-width="1.8"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <button class="landing-cta-btn-ghost" @click="router.push('/familias')">
+              Ver microretos
+            </button>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -998,12 +1024,118 @@ onMounted(() => {
   50%       { opacity: 0.35; }
 }
 
+/* ─── CTA FINAL ─────────────────────────────────────────── */
+.landing-cta {
+  position: relative;
+  margin: 32px 0 0;
+  border-radius: 28px;
+  background: linear-gradient(135deg, #1F6935 0%, #2d8a47 50%, #1a5a2e 100%);
+  padding: 56px 48px;
+  overflow: hidden;
+  text-align: center;
+}
+
+.landing-cta-glow {
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 280px; height: 280px;
+  background: radial-gradient(circle, rgba(174,229,101,0.20) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.landing-cta-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.landing-cta-eyebrow {
+  display: inline-block;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(174, 229, 101, 0.85);
+  margin-bottom: 12px;
+}
+
+.landing-cta-title {
+  font-size: clamp(26px, 3vw, 38px);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: #fff;
+  font-style: normal;
+  margin-bottom: 12px;
+}
+
+.landing-cta-accent {
+  font-style: normal;
+  color: #AEE565;
+}
+
+.landing-cta-sub {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.70);
+  line-height: 1.6;
+  margin: 0 0 28px;
+}
+
+.landing-cta-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.landing-cta-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #AEE565;
+  color: #1F6935;
+  font-weight: 700;
+  font-size: 14px;
+  padding: 12px 24px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, gap 0.18s ease;
+}
+
+.landing-cta-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.20);
+  gap: 12px;
+}
+
+.landing-cta-btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.85);
+  font-weight: 600;
+  font-size: 14px;
+  padding: 12px 24px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.20);
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition: background 0.18s ease, color 0.18s ease;
+}
+
+.landing-cta-btn-ghost:hover {
+  background: rgba(255,255,255,0.18);
+  color: #fff;
+}
 
 </style>
 
 <style>
 /* ─── DARK MODE (html.dark supera la especificidad scoped) ─── */
-html.dark .container { background: #0d1117; }
+html.dark .container { background: linear-gradient(160deg, #0d1117 0%, #111827 45%, #0d1117 100%); }
 html.dark .hero-title { color: #f0f6fc; }
 html.dark .hero-sub { color: #8b949e; }
 html.dark .hero-badge { background: rgba(89,191,56,0.12); border-color: rgba(89,191,56,0.25); color: #6dd147; }
@@ -1027,4 +1159,9 @@ html.dark .results-title { color: #c9d1d9; }
 html.dark .results-finale { background: rgba(22,27,34,0.80); border-color: rgba(89,191,56,0.12); }
 html.dark .results-finale-text { color: #c9d1d9; }
 html.dark .features-title { color: #f0f6fc; }
+html.dark .hbadge { color: #AEE565; }
+html.dark .hfloat-accent-text { color: #AEE565; }
+html.dark .results-finale-text strong { color: #6dd147; }
+html.dark .feedback-author-name { color: #6dd147; }
+html.dark .eco-section { }
 </style>

@@ -1,28 +1,11 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import logo from '@/assets/Dualab_logo_sin_fondo_2.png'
 
 const router = useRouter()
 const route  = useRoute()
 const menuOpen = ref(false)
-const isDark = ref(false)
-
-function applyTheme(dark) {
-  isDark.value = dark
-  document.documentElement.classList.toggle('dark', dark)
-  localStorage.setItem('theme', dark ? 'dark' : 'light')
-}
-
-function toggleDark() {
-  applyTheme(!isDark.value)
-}
-
-onMounted(() => {
-  const saved = localStorage.getItem('theme')
-  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-  applyTheme(saved ? saved === 'dark' : prefersDark)
-})
 
 function toggleMenu() {
   menuOpen.value = !menuOpen.value
@@ -88,19 +71,15 @@ function irAFormularios() {
 
       <!-- CTA -->
       <div class="nav-actions">
-        <button class="theme-toggle" @click="toggleDark" :aria-label="isDark ? 'Activar modo claro' : 'Activar modo oscuro'">
-          <!-- Sol (modo claro activo) -->
-          <svg v-if="!isDark" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="4"/>
-            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
-          </svg>
-          <!-- Luna (modo oscuro activo) -->
-          <svg v-else width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        <button v-if="route.path === '/familias'" class="nav-btn nav-btn--participar" @click="navigate('/participar')">
+          Quiero participar
+          <svg width="13" height="13" viewBox="0 0 14 14" fill="none" class="btn-arrow">
+            <path d="M2.5 7h9M8 3.5L11.5 7 8 10.5" stroke="currentColor" stroke-width="1.7"
+              stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </button>
-        <button class="nav-btn" @click="irAFormularios">
-          Quiero participar
+        <button v-else class="nav-btn" @click="navigate('/familias')">
+          Explorar retos
           <svg width="13" height="13" viewBox="0 0 14 14" fill="none" class="btn-arrow">
             <path d="M2.5 7h9M8 3.5L11.5 7 8 10.5" stroke="currentColor" stroke-width="1.7"
               stroke-linecap="round" stroke-linejoin="round"/>
@@ -199,6 +178,7 @@ function irAFormularios() {
     0 8px 32px rgba(0, 0, 0, 0.04);
   position: relative;
   z-index: 2;
+  transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
 /* ── LOGO ─────────────────────────────────────────────── */
@@ -330,27 +310,6 @@ function irAFormularios() {
   flex-shrink: 0;
 }
 
-.theme-toggle {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  border-radius: 9px;
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  background: rgba(0, 0, 0, 0.04);
-  color: #6b7280;
-  cursor: pointer;
-  transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
-  flex-shrink: 0;
-}
-
-.theme-toggle:hover {
-  background: rgba(89, 191, 56, 0.08);
-  border-color: rgba(89, 191, 56, 0.25);
-  color: #1F6935;
-  transform: rotate(15deg);
-}
 
 .nav-btn {
   display: inline-flex;
@@ -381,6 +340,15 @@ function irAFormularios() {
 
 .nav-btn:hover .btn-arrow {
   transform: translateX(2px);
+}
+
+.nav-btn--participar {
+  background: linear-gradient(135deg, #1F6935 0%, #2d8a47 100%);
+  box-shadow: 0 2px 10px rgba(31, 105, 53, 0.30);
+}
+
+.nav-btn--participar:hover {
+  box-shadow: 0 4px 18px rgba(31, 105, 53, 0.40);
 }
 
 /* ── DROPDOWN ─────────────────────────────────────────── */
@@ -548,27 +516,3 @@ function irAFormularios() {
 
 </style>
 
-<style>
-/* ── DARK MODE (non-scoped: html.dark da mayor especificidad) ── */
-html.dark .nav {
-  background: rgba(13, 17, 23, 0.82);
-  border-color: rgba(255, 255, 255, 0.07);
-  box-shadow:
-    0 1px 0 rgba(89, 191, 56, 0.06),
-    0 2px 12px rgba(0, 0, 0, 0.30),
-    0 8px 32px rgba(0, 0, 0, 0.20);
-}
-html.dark .logo-wordmark { color: #f0f6fc; }
-html.dark .logo-chevron-btn { color: #6b7280; }
-html.dark .nav-link { color: #8b949e; }
-html.dark .nav-link:hover,
-html.dark .nav-link.is-active { color: #AEE565; background: rgba(174, 229, 101, 0.07); }
-html.dark .theme-toggle { border-color: rgba(255,255,255,0.10); background: rgba(255,255,255,0.05); color: #8b949e; }
-html.dark .theme-toggle:hover { background: rgba(174,229,101,0.10); border-color: rgba(174,229,101,0.25); color: #AEE565; }
-html.dark .dropdown { background: rgba(22,27,34,0.97); border-color: rgba(255,255,255,0.08); box-shadow: 0 4px 24px rgba(0,0,0,0.30), 0 16px 48px rgba(0,0,0,0.25); }
-html.dark .dropdown-label { color: #6b7280; }
-html.dark .dropdown-item:hover { background: rgba(174,229,101,0.06); }
-html.dark .dropdown-item strong { color: #f0f6fc; }
-html.dark .dropdown-item em { color: #6b7280; }
-html.dark .dropdown-divider { background: rgba(255,255,255,0.06); }
-</style>

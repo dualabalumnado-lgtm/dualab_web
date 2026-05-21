@@ -262,6 +262,7 @@ onMounted(() => {
 }
 
 /* ─── RESPONSIVE ─────────────────────────────────────────── */
+
 @media (max-width: 840px) {
   .fs-section {
     padding: 36px 20px;
@@ -279,5 +280,31 @@ onMounted(() => {
   .fs-image {
     height: 280px;
   }
+}
+</style>
+
+<style>
+/* ── DARK MODE FeatureSection ── */
+html.dark .fs-section:nth-child(even) {
+  background: rgba(22, 27, 34, 0.50);
+}
+html.dark .fs-badge {
+  background: rgba(89, 191, 56, 0.12);
+  border-color: rgba(89, 191, 56, 0.25);
+  color: #6dd147;
+}
+html.dark .fs-title {
+  color: #f0f6fc;
+}
+html.dark .fs-desc {
+  color: #8b949e;
+}
+html.dark .fs-benefit {
+  color: #c9d1d9;
+}
+html.dark .fs-check {
+  background: rgba(89, 191, 56, 0.12);
+  border-color: rgba(89, 191, 56, 0.22);
+  color: #6dd147;
 }
 </style>

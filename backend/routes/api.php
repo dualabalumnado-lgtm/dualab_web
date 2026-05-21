@@ -1,10 +1,19 @@
 <?php
 
+<<<<<<< HEAD
 use App\Http\Controllers\ProblemaEmpresaController;
 use App\Http\Controllers\AlumnoInteresadoController;
 use App\Http\Controllers\CentroInteresadoController;
 use App\Http\Controllers\EmpresaInteresadaController;
 use App\Http\Controllers\LeadController;
+=======
+use App\Http\Controllers\AlumnoInteresadoController;
+use App\Http\Controllers\CentroInteresadoController;
+use App\Http\Controllers\EmpresaInteresadaController;
+use App\Http\Controllers\FamiliaController;
+use App\Http\Controllers\LeadController;
+use App\Http\Controllers\MicroretoController;
+>>>>>>> feature/dashboard
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -12,6 +21,18 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
+<<<<<<< HEAD
+=======
+// Familias profesionales
+Route::get('familias', [FamiliaController::class, 'index']);
+Route::get('familias/{familia}', [FamiliaController::class, 'show']);
+
+// Microretos
+Route::get('microretos', [MicroretoController::class, 'index']);
+Route::get('microretos/{microreto}', [MicroretoController::class, 'show']);
+
+// Leads
+>>>>>>> feature/dashboard
 Route::apiResource('leads', LeadController::class);
 
 Route::prefix('leads/{lead}')->group(function () {
@@ -30,5 +51,8 @@ Route::prefix('leads/{lead}')->group(function () {
     Route::patch('alumno', [AlumnoInteresadoController::class, 'update']);
     Route::delete('alumno', [AlumnoInteresadoController::class, 'destroy']);
 });
+<<<<<<< HEAD
 
  Route::post('/formulario-empresas', [ProblemaEmpresaController::class, 'store']);
+=======
+>>>>>>> feature/dashboard

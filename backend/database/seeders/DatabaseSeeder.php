@@ -15,11 +15,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+<<<<<<< HEAD
         // User::factory(10)->create();
 
         User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
+=======
+        $this->call([
+            FamiliaSeeder::class,
+            MicroretoSeeder::class,
+>>>>>>> feature/dashboard
         ]);
     }
 }

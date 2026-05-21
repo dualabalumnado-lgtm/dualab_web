@@ -113,6 +113,29 @@ const go = (nombre) => router.push(`/sector/${encodeURIComponent(nombre)}`)
       </div>
     </div>
 
+    <!-- CTA participar -->
+    <div class="max-w-7xl mx-auto px-6 pb-16">
+      <div class="familias-cta">
+        <div class="familias-cta-glow"></div>
+        <div class="familias-cta-body">
+          <div>
+            <p class="familias-cta-eyebrow">¿Ya tienes claro tu reto?</p>
+            <h2 class="familias-cta-title">Cuéntanos cómo podemos ayudarte</h2>
+            <p class="familias-cta-sub">
+              Tanto si eres empresa, centro educativo o alumno, contamos con un espacio para ti.
+            </p>
+          </div>
+          <button class="familias-cta-btn" @click="router.push('/participar')">
+            Quiero participar
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M2.5 7h9M8 3.5L11.5 7 8 10.5" stroke="currentColor" stroke-width="1.8"
+                stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
   </div>
 </template>
 
@@ -126,5 +149,81 @@ const go = (nombre) => router.push(`/sector/${encodeURIComponent(nombre)}`)
 }
 .sector-grid > * {
   transition: opacity 0.25s ease;
+}
+
+.familias-cta {
+  position: relative;
+  border-radius: 24px;
+  background: linear-gradient(135deg, #1F6935 0%, #2d8a47 50%, #1a5a2e 100%);
+  padding: 40px 48px;
+  overflow: hidden;
+}
+
+.familias-cta-glow {
+  position: absolute;
+  bottom: -40px; left: -40px;
+  width: 220px; height: 220px;
+  background: radial-gradient(circle, rgba(174,229,101,0.18) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.familias-cta-body {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.familias-cta-eyebrow {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: rgba(174, 229, 101, 0.85);
+  margin: 0 0 8px;
+}
+
+.familias-cta-title {
+  font-size: clamp(20px, 2.4vw, 28px);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  color: #fff;
+  margin: 0 0 6px;
+  font-style: normal;
+}
+
+.familias-cta-sub {
+  font-size: 14px;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.6;
+  margin: 0;
+  max-width: 480px;
+}
+
+.familias-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #AEE565;
+  color: #1F6935;
+  font-weight: 700;
+  font-size: 14px;
+  padding: 13px 26px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, gap 0.18s ease;
+}
+
+.familias-cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.20);
+  gap: 12px;
 }
 </style>

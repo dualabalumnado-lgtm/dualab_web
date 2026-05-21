@@ -1,5 +1,5 @@
 <template>
-  <div class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6">
+  <div class="fixed inset-0 z-[300] flex items-center justify-center p-4 sm:p-6">
     <div
       class="absolute inset-0 bg-black/70 backdrop-blur-sm"
       @click="$emit('close')"
