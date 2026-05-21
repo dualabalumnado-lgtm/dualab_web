@@ -998,114 +998,33 @@ onMounted(() => {
   50%       { opacity: 0.35; }
 }
 
-/* ─── DARK MODE ─────────────────────────────────────────── */
-:global(.dark) .container {
-  background: linear-gradient(160deg, #0d1117 0%, #0d1117 100%);
-}
 
-:global(.dark) .hero-title {
-  color: #f0f6fc;
-}
+</style>
 
-:global(.dark) .hero-sub {
-  color: #8b949e;
-}
-
-:global(.dark) .hero-badge {
-  background: rgba(89, 191, 56, 0.12);
-  border-color: rgba(89, 191, 56, 0.25);
-  color: #6dd147;
-}
-
-:global(.dark) .hero-cta-ghost {
-  background: rgba(255, 255, 255, 0.06);
-  border-color: rgba(174, 229, 101, 0.20);
-  color: #AEE565;
-}
-
-:global(.dark) .hero-cta-ghost:hover {
-  background: rgba(255, 255, 255, 0.10);
-}
-
-:global(.dark) .hcard-main {
-  background: rgba(22, 27, 34, 0.85);
-  box-shadow:
-    0 8px 24px rgba(0, 0, 0, 0.30),
-    0 24px 56px rgba(0, 0, 0, 0.25),
-    inset 0 1px 0 rgba(255, 255, 255, 0.06);
-}
-
-:global(.dark) .impact-desc {
-  color: #8b949e;
-}
-
-:global(.dark) .impact-divider {
-  background: rgba(255, 255, 255, 0.06);
-}
-
-:global(.dark) .hbadge {
-  background: rgba(22, 27, 34, 0.90);
-  border-color: rgba(89, 191, 56, 0.20);
-}
-
-:global(.dark) .hfloat {
-  background: rgba(22, 27, 34, 0.88);
-  border-color: rgba(255, 255, 255, 0.08);
-}
-
-:global(.dark) .hfloat--accent {
-  border-color: rgba(89, 191, 56, 0.20);
-}
-
-:global(.dark) .hfloat-accent-text {
-  color: #AEE565;
-}
-
-:global(.dark) .eco-label {
-  color: #6dd147;
-}
-
-:global(.dark) .feedback-flow {
-  background: rgba(22, 27, 34, 0.60);
-  border-color: rgba(89, 191, 56, 0.12);
-}
-
-:global(.dark) .feedback-step-label {
-  color: #c9d1d9;
-}
-
-:global(.dark) .feedback-step--highlight .feedback-step-label {
-  color: #AEE565;
-}
-
-:global(.dark) .feedback-quote {
-  background: #161b22;
-  border-color: rgba(255, 255, 255, 0.08);
-}
-
-:global(.dark) .feedback-quote-text {
-  color: #c9d1d9;
-}
-
-:global(.dark) .feedback-author-role {
-  color: #6b7280;
-}
-
-:global(.dark) .results-title {
-  color: #c9d1d9;
-}
-
-:global(.dark) .results-finale {
-  background: rgba(22, 27, 34, 0.80);
-  border-color: rgba(89, 191, 56, 0.12);
-}
-
-:global(.dark) .results-finale-text {
-  color: #c9d1d9;
-}
-
-:global(.dark) .features-title {
-  color: #f0f6fc;
-}
-
+<style>
+/* ─── DARK MODE (html.dark supera la especificidad scoped) ─── */
+html.dark .container { background: #0d1117; }
+html.dark .hero-title { color: #f0f6fc; }
+html.dark .hero-sub { color: #8b949e; }
+html.dark .hero-badge { background: rgba(89,191,56,0.12); border-color: rgba(89,191,56,0.25); color: #6dd147; }
+html.dark .hero-cta-ghost { background: rgba(255,255,255,0.06); border-color: rgba(174,229,101,0.20); color: #AEE565; }
+html.dark .hero-cta-ghost:hover { background: rgba(255,255,255,0.10); }
+html.dark .hcard-main { background: rgba(22,27,34,0.85); box-shadow: 0 8px 24px rgba(0,0,0,0.30), 0 24px 56px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.06); }
+html.dark .impact-desc { color: #8b949e; }
+html.dark .impact-divider { background: rgba(255,255,255,0.06); }
+html.dark .hbadge { background: rgba(22,27,34,0.90); border-color: rgba(89,191,56,0.20); }
+html.dark .hfloat { background: rgba(22,27,34,0.88); border-color: rgba(255,255,255,0.08); }
+html.dark .hfloat--accent { border-color: rgba(89,191,56,0.20); }
+html.dark .hfloat-accent-text { color: #AEE565; }
+html.dark .eco-label { color: #6dd147; }
+html.dark .feedback-flow { background: rgba(22,27,34,0.60); border-color: rgba(89,191,56,0.12); }
+html.dark .feedback-step-label { color: #c9d1d9; }
+html.dark .feedback-step--highlight .feedback-step-label { color: #AEE565; }
+html.dark .feedback-quote { background: #161b22; border-color: rgba(255,255,255,0.08); }
+html.dark .feedback-quote-text { color: #c9d1d9; }
+html.dark .feedback-author-role { color: #6b7280; }
+html.dark .results-title { color: #c9d1d9; }
+html.dark .results-finale { background: rgba(22,27,34,0.80); border-color: rgba(89,191,56,0.12); }
+html.dark .results-finale-text { color: #c9d1d9; }
+html.dark .features-title { color: #f0f6fc; }
 </style>

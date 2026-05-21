@@ -545,8 +545,12 @@ function irAFormularios() {
   }
 }
 
-/* ── DARK MODE ────────────────────────────────────────── */
-:global(.dark) .nav {
+
+</style>
+
+<style>
+/* ── DARK MODE (non-scoped: html.dark da mayor especificidad) ── */
+html.dark .nav {
   background: rgba(13, 17, 23, 0.82);
   border-color: rgba(255, 255, 255, 0.07);
   box-shadow:
@@ -554,62 +558,17 @@ function irAFormularios() {
     0 2px 12px rgba(0, 0, 0, 0.30),
     0 8px 32px rgba(0, 0, 0, 0.20);
 }
-
-:global(.dark) .logo-wordmark {
-  color: #f0f6fc;
-}
-
-:global(.dark) .logo-chevron-btn {
-  color: #6b7280;
-}
-
-:global(.dark) .nav-link {
-  color: #8b949e;
-}
-
-:global(.dark) .nav-link:hover,
-:global(.dark) .nav-link.is-active {
-  color: #AEE565;
-  background: rgba(174, 229, 101, 0.07);
-}
-
-:global(.dark) .theme-toggle {
-  border-color: rgba(255, 255, 255, 0.10);
-  background: rgba(255, 255, 255, 0.05);
-  color: #8b949e;
-}
-
-:global(.dark) .theme-toggle:hover {
-  background: rgba(174, 229, 101, 0.10);
-  border-color: rgba(174, 229, 101, 0.25);
-  color: #AEE565;
-}
-
-:global(.dark) .dropdown {
-  background: rgba(22, 27, 34, 0.97);
-  border-color: rgba(255, 255, 255, 0.08);
-  box-shadow:
-    0 4px 24px rgba(0, 0, 0, 0.30),
-    0 16px 48px rgba(0, 0, 0, 0.25);
-}
-
-:global(.dark) .dropdown-label {
-  color: #6b7280;
-}
-
-:global(.dark) .dropdown-item:hover {
-  background: rgba(174, 229, 101, 0.06);
-}
-
-:global(.dark) .dropdown-item strong {
-  color: #f0f6fc;
-}
-
-:global(.dark) .dropdown-item em {
-  color: #6b7280;
-}
-
-:global(.dark) .dropdown-divider {
-  background: rgba(255, 255, 255, 0.06);
-}
+html.dark .logo-wordmark { color: #f0f6fc; }
+html.dark .logo-chevron-btn { color: #6b7280; }
+html.dark .nav-link { color: #8b949e; }
+html.dark .nav-link:hover,
+html.dark .nav-link.is-active { color: #AEE565; background: rgba(174, 229, 101, 0.07); }
+html.dark .theme-toggle { border-color: rgba(255,255,255,0.10); background: rgba(255,255,255,0.05); color: #8b949e; }
+html.dark .theme-toggle:hover { background: rgba(174,229,101,0.10); border-color: rgba(174,229,101,0.25); color: #AEE565; }
+html.dark .dropdown { background: rgba(22,27,34,0.97); border-color: rgba(255,255,255,0.08); box-shadow: 0 4px 24px rgba(0,0,0,0.30), 0 16px 48px rgba(0,0,0,0.25); }
+html.dark .dropdown-label { color: #6b7280; }
+html.dark .dropdown-item:hover { background: rgba(174,229,101,0.06); }
+html.dark .dropdown-item strong { color: #f0f6fc; }
+html.dark .dropdown-item em { color: #6b7280; }
+html.dark .dropdown-divider { background: rgba(255,255,255,0.06); }
 </style>
