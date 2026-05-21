@@ -2,7 +2,7 @@
 import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import FeatureSection from '@/components/FeatureSection.vue'
-import SeccionFormularios from '@/components/formularios/SeccionFormularios.vue'
+
 
 const emit = defineEmits(['login', 'formulario'])
 const router = useRouter()
@@ -286,9 +286,6 @@ onMounted(() => {
 
     </div>
   </div>
-
-  <!-- Sección de captación de leads — ancla para el navbar -->
-  <SeccionFormularios id="formularios" />
 
 </template>
 

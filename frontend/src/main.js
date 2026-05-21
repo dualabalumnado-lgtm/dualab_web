@@ -8,6 +8,7 @@ import FamiliaDetailView from './views/FamiliaDetailView.vue'
 import MicroretoDetailView from './views/MicroretoDetailView.vue'
 import MicroretosView from './views/MicroretosView.vue'
 import SectorView from './views/SectorView.vue'
+import ParticipantesView from './views/ParticipantesView.vue'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -17,6 +18,7 @@ const router = createRouter({
     { path: '/familia/:id',     component: FamiliaDetailView   },
     { path: '/reto/:id',        component: MicroretoDetailView },
     { path: '/microretos',      component: MicroretosView      },
+    { path: '/participar',      component: ParticipantesView   },
   ]
 })
 

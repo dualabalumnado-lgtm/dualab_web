@@ -31,16 +31,7 @@ function navigate(path) {
 }
 
 function irAFormularios() {
-  closeMenu()
-  if (route.path !== '/') {
-    router.push('/').then(() => {
-      setTimeout(() => {
-        document.getElementById('formularios')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-      }, 300)
-    })
-  } else {
-    document.getElementById('formularios')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-  }
+  navigate('/participar')
 }
 </script>
 
