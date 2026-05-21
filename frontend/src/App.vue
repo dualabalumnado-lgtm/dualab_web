@@ -1,14 +1,11 @@
 <template>
-  <div class="min-h-screen bg-gray-100 py-10">
-    
-    <FormularioChatbot />
-
+  <div class="min-h-screen">
+    <SeccionFormularios />
   </div>
 </template>
 
 <script setup>
-// Aquí le decimos a App.vue DÓNDE encontrar a tu actor (importamos el archivo)
-import FormularioChatbot from './components/FormularioChatbot.vue'
+import SeccionFormularios from './components/formularios/SeccionFormularios.vue'
 </script>
 
 <style>
