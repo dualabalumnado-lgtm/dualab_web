@@ -1,11 +1,28 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import logo from '@/assets/Dualab_logo_sin_fondo_2.png'
 
 const router = useRouter()
 const route  = useRoute()
 const menuOpen = ref(false)
+const isDark = ref(false)
+
+function applyTheme(dark) {
+  isDark.value = dark
+  document.documentElement.classList.toggle('dark', dark)
+  localStorage.setItem('theme', dark ? 'dark' : 'light')
+}
+
+function toggleDark() {
+  applyTheme(!isDark.value)
+}
+
+onMounted(() => {
+  const saved = localStorage.getItem('theme')
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+  applyTheme(saved ? saved === 'dark' : prefersDark)
+})
 
 function toggleMenu() {
   menuOpen.value = !menuOpen.value
@@ -71,6 +88,17 @@ function irAFormularios() {
 
       <!-- CTA -->
       <div class="nav-actions">
+        <button class="theme-toggle" @click="toggleDark" :aria-label="isDark ? 'Activar modo claro' : 'Activar modo oscuro'">
+          <!-- Sol (modo claro activo) -->
+          <svg v-if="!isDark" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="4"/>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+          </svg>
+          <!-- Luna (modo oscuro activo) -->
+          <svg v-else width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </button>
         <button class="nav-btn" @click="irAFormularios">
           Quiero participar
           <svg width="13" height="13" viewBox="0 0 14 14" fill="none" class="btn-arrow">
@@ -298,7 +326,30 @@ function irAFormularios() {
 .nav-actions {
   display: flex;
   align-items: center;
+  gap: 8px;
   flex-shrink: 0;
+}
+
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 9px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: rgba(0, 0, 0, 0.04);
+  color: #6b7280;
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
+  flex-shrink: 0;
+}
+
+.theme-toggle:hover {
+  background: rgba(89, 191, 56, 0.08);
+  border-color: rgba(89, 191, 56, 0.25);
+  color: #1F6935;
+  transform: rotate(15deg);
 }
 
 .nav-btn {
